@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - JG Fit Coach</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Services page specific styles only */
+    <style>
+        /* Services page specific styles only */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            transform: translateY(-4px);
+        }
+
+        .service-image {
+            height: 180px;
+            background: #EBEBEC;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 1.1rem;
+        }
+
+        .service-icon {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            z-index: 10;
+        }
+
+        .service-icon.lifestyle {
+            background: var(--green);
+            color: white;
+        }
+
+        .service-icon.bodybuilding {
+            background: var(--orange);
+            color: var(--dark);
+        }
+
+        .service-content {
+            padding: 1.5rem;
+        }
+
+        .service-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .service-level {
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            font-family: 'Roboto Condensed', sans-serif;
+        }
+
+        .service-level.lifestyle {
+            background: var(--green);
+            color: var(--dark);
+        }
+
+        .service-level.bodybuilding {
+            background: var(--orange);
+            color: var(--dark);
+        }
+
+        .service-price {
+            font-family: 'Roboto Condensed', sans-serif;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .service-price.lifestyle {
+            color: var(--green);
+        }
+
+        .service-price.bodybuilding {
+            color: var(--orange);
+        }
+
+        .service-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+            color: var(--dark);
+        }
+
+        .service-description {
+            color: var(--gray-medium);
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+
+        .view-details-btn {
+            width: 100%;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-family: 'Roboto Condensed', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 1rem;
+        }
+
+        .view-details-btn.lifestyle {
+            background: var(--green);
+            color: var(--dark);
+        }
+
+        .view-details-btn.lifestyle:hover {
+            background: #4ade80;
+        }
+
+        .view-details-btn.bodybuilding {
+            background: var(--orange);
+            color: var(--dark);
+        }
+
+        .view-details-btn.bodybuilding:hover {
+            background: #F8F991;
+        }
+
+        /* Modal Styles for Service Details */
+        .modal-header {
+            padding: 2rem 2rem 1rem;
+            border-bottom: 1px solid #E5E7EB;
+        }
+
+        .modal-service-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .modal-service-price {
+            font-family: 'Roboto Condensed', sans-serif;
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-service-price.lifestyle {
+            color: var(--green);
+        }
+
+        .modal-service-price.bodybuilding {
+            color: var(--orange);
+        }
+
+        .modal-service-description {
+            color: var(--gray-medium);
+            line-height: 1.6;
+        }
+
+        .modal-content {
+            padding: 2rem;
+        }
+
+        .detail-section {
+            margin-bottom: 2rem;
+        }
+
+        .detail-section h4 {
+            font-family: 'Roboto Condensed', sans-serif;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .detail-section p {
+            color: var(--gray-medium);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-item {
+            background: #F9FAFB;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border-left: 3px solid var(--green);
+        }
+
+        .info-item strong {
+            color: var(--dark);
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .features-list li {
+            padding: 0.4rem 0;
+            color: var(--gray-medium);
+            line-height: 1.5;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .features-list li::before {
+            content: "✓";
+            color: var(--green);
+            font-weight: bold;
+            margin-right: 0.75rem;
+            margin-top: 0.1rem;
+            flex-shrink: 0;
+        }
+
+        .modal-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-top: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .modal-actions {
+                flex-direction: row;
+            }
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+            font-family: 'Roboto Condensed', sans-serif;
+            font-weight: 600;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+            font-size: 1rem;
+        }
+
+        .action-btn.primary.lifestyle {
+            background: var(--green);
+            color: var(--dark);
+        }
+
+        .action-btn.primary.lifestyle:hover {
+            background: #4ade80;
+        }
+
+        .action-btn.primary.bodybuilding {
+            background: var(--orange);
+            color: var(--dark);
+        }
+
+        .action-btn.primary.bodybuilding:hover {
+            background: #F8F991;
+        }
+
+        .action-btn.secondary.lifestyle {
+            background: transparent;
+            color: var(--green);
+            border-color: var(--green);
+        }
+
+        .action-btn.secondary.lifestyle:hover {
+            background: var(--green);
+            color: var(--dark);
+        }
+
+        .action-btn.secondary.bodybuilding {
+            background: transparent;
+            color: var(--orange);
+            border-color: var(--orange);
+        }
+
+        .action-btn.secondary.bodybuilding:hover {
+            background: var(--orange);
+            color: var(--dark);
+        }
+
+        .cta-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .cta-buttons {
+                flex-direction: row;
+                justify-content: center;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal {
+                margin: 0.5rem;
+                max-height: 95vh;
+            }
+            
+            .modal-header,
+            .modal-content {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-section" onclick="location.href='index.html'">
+                <div class="logo">
+                    <img src="images/jgLogoV1-01.svg" alt="JG Fit Coach Logo">
+                    <span class="logo-fallback">JG</span>
+                </div>
+                <div class="logo-text">Build the best version of you</div>
+            </div>
+            
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="services.html" class="nav-link active">Services</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                
+            </nav>
+<!--
+            <div class="social-links">
+                <a href="https://www.instagram.com/joelg_fitness/?hl=en" target="_blank" class="social-link instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.threads.com/@joelg_fitness" target="_blank" class="social-link threads">
+                    @
+                </a>
+                <a href="mailto:joel@jgfitcoach.com" class="social-link email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>-->
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-small">
+        <div class="hero-content">
+            <h1>Our <span class="highlight-green">Services</span></h1>
+            <p>Choose from our comprehensive range of fitness and nutrition services designed to help you achieve your goals</p>
+        </div>
+    </section>
+
+    <!-- Filter Buttons -->
+    <section class="filter-section">
+        <div class="container">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All Services</button>
+                <button class="filter-btn" data-filter="lifestyle">Lifestyle & Wellness</button>
+                <button class="filter-btn" data-filter="bodybuilding">Bodybuilding & Posing</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section">
+        <div class="container">
+            <div class="services-grid">
+                <!-- Online Lifestyle Coaching -->
+                <div class="service-card lifestyle-service" data-category="lifestyle">
+                    <div class="service-image">
+                        <div class="service-icon lifestyle">👤</div>
+                        <span>Service Image</span>
+                    </div>
+                    <div class="service-content">
+                        <div class="service-header">
+                            <span class="service-level lifestyle">All Levels</span>
+                            <span class="service-price lifestyle">$200/month</span>
+                        </div>
+                        <h3 class="service-title">Online Lifestyle Fitness Coaching</h3>
+                        <p class="service-description">Subscription-based online coaching program delivering personalized nutrition & fitness guidance through weekly check-ins and continuous support.</p>
+                        
+                        <button class="view-details-btn lifestyle" onclick="openServiceModal('lifestyle-coaching')">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- In-Person Training -->
+                <div class="service-card lifestyle-service" data-category="lifestyle">
+                    <div class="service-image">
+                        <div class="service-icon lifestyle">🏋️</div>
+                        <span>Service Image</span>
+                    </div>
+                    <div class="service-content">
+                        <div class="service-header">
+                            <span class="service-level lifestyle">All Levels</span>
+                            <span class="service-price lifestyle">$99/hour</span>
+                        </div>
+                        <h3 class="service-title">In Person (1-on-1) Training</h3>
+                        <p class="service-description">Certified Personal Training delivered to the convenience of your home or local gym with personalized programming, expert guidance, and hands-on coaching.</p>
+                        
+                        <button class="view-details-btn lifestyle" onclick="openServiceModal('in-person-training')">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Online Bodybuilding Coaching -->
+                <div class="service-card bodybuilding-service" data-category="bodybuilding">
+                    <div class="service-image">
+                        <div class="service-icon bodybuilding">🏆</div>
+                        <span>Service Image</span>
+                    </div>
+                    <div class="service-content">
+                        <div class="service-header">
+                            <span class="service-level bodybuilding">Advanced</span>
+                            <span class="service-price bodybuilding">$300/month</span>
+                        </div>
+                        <h3 class="service-title">Online Bodybuilding Athlete Training</h3>
+                        <p class="service-description">Bodybuilding and Physique Coaching including Nutrition Programming, Training + Posing for serious competitors and physique enthusiasts.</p>
+                        
+                        <button class="view-details-btn bodybuilding" onclick="openServiceModal('bodybuilding-coaching')">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Virtual Posing Coaching -->
+                <div class="service-card bodybuilding-service" data-category="bodybuilding">
+                    <div class="service-image">
+                        <div class="service-icon bodybuilding">📹</div>
+                        <span>Service Image</span>
+                    </div>
+                    <div class="service-content">
+                        <div class="service-header">
+                            <span class="service-level bodybuilding">Intermediate</span>
+                            <span class="service-price bodybuilding">$45/session</span>
+                        </div>
+                        <h3 class="service-title">Live Virtual Bodybuilding Posing</h3>
+                        <p class="service-description">Physique and Bodybuilding Posing including mandatory poses + routine design to perfect your stage presentation.</p>
+                        
+                        <button class="view-details-btn bodybuilding" onclick="openServiceModal('virtual-posing')">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- In-Person Posing -->
+                <div class="service-card bodybuilding-service" data-category="bodybuilding">
+                    <div class="service-image">
+                        <div class="service-icon bodybuilding">🎯</div>
+                        <span>Service Image</span>
+                    </div>
+                    <div class="service-content">
+                        <div class="service-header">
+                            <span class="service-level bodybuilding">All Levels</span>
+                            <span class="service-price bodybuilding">$50/session</span>
+                        </div>
+                        <h3 class="service-title">In-Person Bodybuilding Posing</h3>
+                        <p class="service-description">In-Person Posing Coaching for Bodybuilding & Classic Physique to master your stage presentation and build confidence.</p>
+                        
+                        <button class="view-details-btn bodybuilding" onclick="openServiceModal('in-person-posing')">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container" style="max-width: 800px;">
+            <h2 class="section-title">Not Sure Which Service is Right for You?</h2>
+            <p class="section-subtitle">Book a free consultation to discuss your goals and find the perfect program for your needs.</p>
+            
+            <div class="cta-buttons">
+                <a href="contact.html" class="cta-button orange">Schedule Free Consultation</a>
+                <button onclick="startQuiz()" class="cta-button green-outline">Take Fitness Quiz</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <!-- Column 1: Logo and Slogan -->
+            <div class="footer-section">
+                <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                    <div class="footer-logo">
+                        <img src="images/jgLogoV1-01.svg" alt="JG Fit Coach Logo">
+                        <span class="footer-logo-fallback">JG</span>
+                    </div>
+                    <div style="color: #9CA3AF; font-style: italic; font-size: 0.9rem;">
+                        Build the best version of you
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Column 2: Services -->
+            <div class="footer-section">
+                <h4>Services</h4>
+                <ul class="footer-links">
+                    <li><a href="services.html">Personal Training</a></li>
+                    <li><a href="services.html">Nutrition Coaching</a></li>
+                    <li><a href="services.html">Online Training</a></li>
+                    <li><a href="services.html">Posing Coaching</a></li>
+                </ul>
+            </div>
+            
+            <!-- Column 3: Quick Links -->
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+            </div>
+            
+            <!-- Column 4: Connect -->
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/joelg_fitness/?hl=en" target="_blank" class="social-link instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.threads.com/@joelg_fitness" target="_blank" class="social-link threads">
+                        @
+                    </a>
+                    <a href="mailto:joel@jgfitcoach.com" class="social-link email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+       
+    </footer>
+
+    <!-- Service Detail Modal -->
+    <div id="service-modal" class="modal-overlay hidden">
+        <div class="modal">
+            <button class="modal-close" onclick="closeServiceModal()">✕</button>
+            
+            <div class="modal-header">
+                <h2 id="modal-title" class="modal-service-title"></h2>
+                <div id="modal-price" class="modal-service-price"></div>
+                <p id="modal-description" class="modal-service-description"></p>
+            </div>
+            
+            <div class="modal-content">
+                <div id="modal-info" class="detail-section">
+                    <h4>Service Information</h4>
+                    <div class="info-grid" id="info-grid"></div>
+                </div>
+                
+                <div id="modal-included" class="detail-section">
+                    <h4>What's Included</h4>
+                    <ul class="features-list" id="features-list"></ul>
+                </div>
+                
+                <div id="modal-ideal" class="detail-section">
+                    <h4>Ideal For</h4>
+                    <p id="ideal-text"></p>
+                </div>
+                
+                <div class="modal-actions">
+                    <a href="contact.html" id="primary-btn" class="action-btn primary">Book This Service</a>
+                    <a href="contact.html" id="secondary-btn" class="action-btn secondary">Schedule Free Consultation</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quiz Modal -->
+    <div id="quiz-modal" class="modal-overlay hidden">
+        <div class="modal">
+            <button class="modal-close" onclick="closeQuiz()">✕</button>
+            
+            <div id="quiz-content">
+                <div style="margin-bottom: 1.5rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <h3 style="font-family: 'Oswald', sans-serif; font-size: 1.3rem;">Fitness Assessment</h3>
+                        <span id="quiz-progress" style="color: #6B7280; font-size: 0.9rem;">1 of 4</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div id="progress-fill" class="progress-fill" style="width: 25%"></div>
+                    </div>
+                </div>
+
+                <div id="quiz-question" class="quiz-question">What's your primary fitness goal?</div>
+                
+                <div id="quiz-options" class="quiz-options"></div>
+            </div>
+
+            <div id="quiz-result" class="hidden" style="text-align: center;">
+                <div id="result-icon" style="width: 64px; height: 64px; border-radius: 50%; margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem;"></div>
+                <h3 id="result-title" style="font-family: 'Oswald', sans-serif; font-size: 1.5rem; margin-bottom: 1rem;"></h3>
+                <p id="result-description" style="color: #6B7280; margin-bottom: 2rem;"></p>
+                <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                    <button id="view-services" class="cta-button" onclick="filterServicesFromQuiz()">View Recommended Services</button>
+                    <button class="cta-button" onclick="window.location.href='contact.html'" style="background: transparent; border: 2px solid #5FEFA7; color: #5FEFA7;">Book Free Consultation</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Quiz functionality
+        const quizQuestions = [
+            {
+                question: "What's your primary fitness goal?",
+                options: [
+                    { text: "Lose weight and improve overall health", points: { lifestyle: 3, bodybuilding: 1 } },
+                    { text: "Build muscle and strength", points: { lifestyle: 2, bodybuilding: 2 } },
+                    { text: "Compete in bodybuilding/physique", points: { lifestyle: 0, bodybuilding: 3 } },
+                    { text: "Maintain current fitness level", points: { lifestyle: 3, bodybuilding: 0 } }
+                ]
+            },
+            {
+                question: "What's your current fitness experience?",
+                options: [
+                    { text: "Complete beginner", points: { lifestyle: 3, bodybuilding: 1 } },
+                    { text: "Some experience (6 months - 2 years)", points: { lifestyle: 2, bodybuilding: 2 } },
+                    { text: "Experienced (2+ years)", points: { lifestyle: 1, bodybuilding: 3 } },
+                    { text: "Advanced athlete/competitor", points: { lifestyle: 0, bodybuilding: 3 } }
+                ]
+            },
+            {
+                question: "How much time can you dedicate to fitness weekly?",
+                options: [
+                    { text: "2-3 hours per week", points: { lifestyle: 3, bodybuilding: 0 } },
+                    { text: "4-6 hours per week", points: { lifestyle: 3, bodybuilding: 1 } },
+                    { text: "7-10 hours per week", points: { lifestyle: 2, bodybuilding: 2 } },
+                    { text: "10+ hours per week", points: { lifestyle: 1, bodybuilding: 3 } }
+                ]
+            },
+            {
+                question: "What type of coaching do you prefer?",
+                options: [
+                    { text: "Online coaching with flexibility", points: { lifestyle: 3, bodybuilding: 2 } },
+                    { text: "In-person hands-on training", points: { lifestyle: 2, bodybuilding: 1 } },
+                    { text: "Specialized competition prep", points: { lifestyle: 0, bodybuilding: 3 } },
+                    { text: "Mix of online and in-person", points: { lifestyle: 2, bodybuilding: 2 } }
+                ]
+            }
+        ];
+
+        let currentQuestion = 0;
+        let quizScores = { lifestyle: 0, bodybuilding: 0 };
+
+        function startQuiz() {
+            currentQuestion = 0;
+            quizScores = { lifestyle: 0, bodybuilding: 0 };
+            
+            document.getElementById('quiz-modal').classList.remove('hidden');
+            document.getElementById('quiz-content').classList.remove('hidden');
+            document.getElementById('quiz-result').classList.add('hidden');
+            document.body.style.overflow = 'hidden';
+            
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const question = quizQuestions[currentQuestion];
+            
+            document.getElementById('quiz-question').textContent = question.question;
+            document.getElementById('quiz-progress').textContent = `${currentQuestion + 1} of ${quizQuestions.length}`;
+            document.getElementById('progress-fill').style.width = `${((currentQuestion + 1) / quizQuestions.length) * 100}%`;
+            
+            const optionsContainer = document.getElementById('quiz-options');
+            optionsContainer.innerHTML = question.options.map((option, index) => `
+                <button class="quiz-option" onclick="selectAnswer(${index})">
+                    ${option.text}
+                </button>
+            `).join('');
+        }
+
+        function selectAnswer(optionIndex) {
+            const question = quizQuestions[currentQuestion];
+            const selectedOption = question.options[optionIndex];
+            
+            // Add points to scores
+            quizScores.lifestyle += selectedOption.points.lifestyle;
+            quizScores.bodybuilding += selectedOption.points.bodybuilding;
+            
+            currentQuestion++;
+            
+            if (currentQuestion < quizQuestions.length) {
+                showQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('quiz-content').classList.add('hidden');
+            document.getElementById('quiz-result').classList.remove('hidden');
+            
+            const resultIcon = document.getElementById('result-icon');
+            const resultTitle = document.getElementById('result-title');
+            const resultDescription = document.getElementById('result-description');
+            
+            if (quizScores.lifestyle > quizScores.bodybuilding) {
+                resultIcon.style.background = 'var(--green)';
+                resultIcon.textContent = '🌟';
+                resultTitle.textContent = 'Lifestyle & Wellness Coaching';
+                resultDescription.textContent = 'Based on your answers, our lifestyle and wellness coaching services would be perfect for helping you achieve your health and fitness goals with a sustainable approach.';
+            } else {
+                resultIcon.style.background = 'var(--orange)';
+                resultIcon.textContent = '🏆';
+                resultTitle.textContent = 'Bodybuilding & Posing Services';
+                resultDescription.textContent = 'Your responses suggest you\'re ready for serious physique development. Our bodybuilding and posing coaching will help you take your training to the competitive level.';
+            }
+        }
+
+        function filterServicesFromQuiz() {
+            const resultType = quizScores.lifestyle > quizScores.bodybuilding ? 'lifestyle' : 'bodybuilding';
+            closeQuiz();
+            filterServices(resultType);
+            
+            // Scroll to services
+            document.querySelector('.services-grid').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function closeQuiz() {
+            document.getElementById('quiz-modal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        // Service data
+        const serviceData = {
+            'lifestyle-coaching': {
+                title: 'Online Lifestyle Fitness Coaching',
+                price: '$200/month',
+                description: 'Subscription-based online coaching program delivering personalized nutrition & fitness guidance through weekly check-ins and continuous support.',
+                category: 'lifestyle',
+                info: [
+                    { label: 'Duration', value: 'Until Cancellation (requires 30 day notice)' },
+                    { label: 'Format', value: 'Virtual Remote' }
+                ],
+                features: [
+                    'Weekly Check-ins structured to monitor progress',
+                    'Personalized Nutrition Programming with tailored meal plans',
+                    'Customized Training Plan designed for your fitness level',
+                    'Exclusive Messaging Support via email and text',
+                    'Ongoing Weekly Adjustments based on your progress'
+                ],
+                ideal: 'Any individual wanting to increase performance, improve their health, recovery and nutrition habits with the mindset of optimizing longevity and seeking detailed guidance from a Certified Coach.'
+            },
+            'in-person-training': {
+                title: 'In Person (1-on-1) Training',
+                price: '$99/hour',
+                description: 'Certified Personal Training delivered to the convenience of your home or local gym with personalized programming, expert guidance, and hands-on coaching.',
+                category: 'lifestyle',
+                info: [
+                    { label: 'Duration', value: '1 hour sessions' },
+                    { label: 'Format', value: 'In Person Only (Denver Metro Area)' }
+                ],
+                features: [
+                    'Personalized Assessment & Program Design',
+                    'Mobility and Functional Training',
+                    'Equipment-Flexible Workout Design',
+                    'On-Location Training Sessions',
+                    'Progress Monitoring & Adjustments',
+                    'NASM Certified Nutrition Coaching'
+                ],
+                ideal: 'A busy professional, parent, or athlete seeking personalized training that fits their schedule and location. Perfect for those who value expertise and appreciate the convenience of customized workouts.'
+            },
+            'bodybuilding-coaching': {
+                title: 'Online Bodybuilding Athlete Training',
+                price: '$300/month',
+                description: 'Bodybuilding and Physique Coaching including Nutrition Programming, Training + Posing for serious competitors and physique enthusiasts.',
+                category: 'bodybuilding',
+                info: [
+                    { label: 'Duration', value: '6 months minimum' },
+                    { label: 'Format', value: 'Virtual only' }
+                ],
+                features: [
+                    'Weekly check-ins with personalized video response',
+                    'Nutrition Programming based on competition goals',
+                    'Periodized Training Plan focused on progressive overload',
+                    'Video Exercise Reviews with detailed feedback',
+                    'Routine design for stage presentation',
+                    'Bloodwork Analysis for optimal performance',
+                    'Supplement Guidance and contest prep strategies',
+                    'Ongoing Progress Monitoring and support'
+                ],
+                ideal: 'Any individual pursuing physique enhancement or competition prep, committed to structured training, disciplined nutrition, and continuous improvement. Perfect for both beginners and experienced athletes.'
+            },
+            'virtual-posing': {
+                title: 'Live Virtual Bodybuilding Posing',
+                price: '$45/session',
+                description: 'Physique and Bodybuilding Posing including mandatory poses + routine design to perfect your stage presentation.',
+                category: 'bodybuilding',
+                info: [
+                    { label: 'Duration', value: '50 min sessions' },
+                    { label: 'Format', value: 'Virtual only' }
+                ],
+                features: [
+                    'Mandatory Pose Breakdown with detailed instruction',
+                    'Smooth, confident transitions between poses',
+                    'Routine Design & Choreography personalized to your physique',
+                    'Real-time video conferencing for detailed feedback'
+                ],
+                ideal: 'Competitive bodybuilder or classic physique athlete seeking to refine mandatory poses, transitions, and stage presence. Perfect for both novice and seasoned competitors wanting expert feedback.'
+            },
+            'in-person-posing': {
+                title: 'In-Person Bodybuilding Posing',
+                price: '$50/session',
+                description: 'In-Person Posing Coaching for Bodybuilding & Classic Physique to master your stage presentation and build confidence.',
+                category: 'bodybuilding',
+                info: [
+                    { label: 'Duration', value: '1 hour session' },
+                    { label: 'Format', value: 'In-Person (Denver Metro Area)' }
+                ],
+                features: [
+                    'Mandatory Poses breakdown for perfect form',
+                    'Smooth Transitions between poses',
+                    'Routine Design & Choreography',
+                    'Stage Presence and confidence building',
+                    'Endurance Practice for competition demands',
+                    'Video Analysis & Recording for improvement'
+                ],
+                ideal: 'Any bodybuilding or classic physique competitor, regardless of experience level. Perfect for first-timers learning fundamentals and seasoned athletes seeking to refine their stage presentation.'
+            }
+        };
+
+        // Filter functionality
+        function filterServices(category = 'all') {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const services = document.querySelectorAll('.service-card');
+            
+            // Update active button
+            filterBtns.forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`[data-filter="${category}"]`).classList.add('active');
+            
+            // Show/hide services
+            services.forEach(service => {
+                if (category === 'all' || service.dataset.category === category) {
+                    service.style.display = 'block';
+                } else {
+                    service.style.display = 'none';
+                }
+            });
+        }
+
+        // Add filter button event listeners
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterServices(btn.dataset.filter);
+            });
+        });
+
+        // Modal functionality
+        function openServiceModal(serviceId) {
+            const service = serviceData[serviceId];
+            if (!service) return;
+
+            // Populate modal content
+            document.getElementById('modal-title').textContent = service.title;
+            document.getElementById('modal-price').textContent = service.price;
+            document.getElementById('modal-description').textContent = service.description;
+
+            // Add category class to price and buttons
+            const priceEl = document.getElementById('modal-price');
+            const primaryBtn = document.getElementById('primary-btn');
+            const secondaryBtn = document.getElementById('secondary-btn');
+            
+            priceEl.className = `modal-service-price ${service.category}`;
+            primaryBtn.className = `action-btn primary ${service.category}`;
+            secondaryBtn.className = `action-btn secondary ${service.category}`;
+
+            // Populate info grid
+            const infoGrid = document.getElementById('info-grid');
+            infoGrid.innerHTML = service.info.map(item => `
+                <div class="info-item">
+                    <strong>${item.label}:</strong>
+                    ${item.value}
+                </div>
+            `).join('');
+
+            // Populate features
+            const featuresList = document.getElementById('features-list');
+            featuresList.innerHTML = service.features.map(feature => `
+                <li>${feature}</li>
+            `).join('');
+
+            // Populate ideal for
+            document.getElementById('ideal-text').textContent = service.ideal;
+
+            // Show modal
+            document.getElementById('service-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeServiceModal() {
+            document.getElementById('service-modal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('service-modal').addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal-overlay')) {
+                closeServiceModal();
+            }
+        });
+
+        // Close modal with escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeServiceModal();
+                closeQuiz();
+            }
+        });
+
+        // Close quiz when clicking outside
+        document.getElementById('quiz-modal').addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal-overlay')) {
+                closeQuiz();
+            }
+        });
+
+        // Placeholder FAQ function (to be implemented based on client preference)
+        function openFAQ() {
+            alert('FAQ section coming soon! For now, please contact us directly with any questions.');
+        }
+    </script>
+</body>
+</html>

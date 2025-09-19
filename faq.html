@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - JG Fit Coach</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-section" onclick="location.href='index.html'">
+                <div class="logo">JG</div>
+                <div class="logo-text">Build the best version of you</div>
+            </div>
+            
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="services.html" class="nav-link">Services</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                
+            </nav>
+<!--
+            <div class="social-links">
+                <a href="https://www.instagram.com/joelg_fitness/?hl=en" target="_blank" class="social-link instagram">
+                    <span style="color: white; font-weight: bold;">📷</span>
+                </a>
+                <a href="https://www.threads.com/@joelg_fitness" target="_blank" class="social-link threads">
+                    <span style="color: white; font-weight: bold;">@</span>
+                </a>
+                <a href="mailto:joel@jgfitcoach.com" class="social-link email">
+                    <span style="color: white;">✉</span>
+                </a>
+            </div>-->
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-small">
+        <div class="hero-content">
+            <h1>Frequently Asked <span class="highlight-green">Questions</span></h1>
+            <p>Got questions? I've got answers! Find everything you need to know about training, nutrition, pricing, and getting started.</p>
+        </div>
+    </section>
+
+    <!-- Search and Filter Section -->
+    <section class="section" style="padding: 2rem 1rem; background: white; border-bottom: 1px solid #E5E7EB;">
+        <div class="container" style="max-width: 800px;">
+            <!-- Search Bar -->
+            <div class="search-container">
+                <div class="search-icon">🔍</div>
+                <input type="text" id="faq-search" placeholder="Search questions..." oninput="searchFAQs()">
+            </div>
+
+            <!-- Category Filter -->
+            <div class="faq-filters">
+                <button class="filter-btn active" data-category="all">All Questions</button>
+                <button class="filter-btn" data-category="general">General</button>
+                <button class="filter-btn" data-category="training">Training</button>
+                <button class="filter-btn" data-category="nutrition">Nutrition</button>
+                <button class="filter-btn" data-category="pricing">Pricing</button>
+                <button class="filter-btn" data-category="booking">Booking</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section">
+        <div class="container" style="max-width: 800px;">
+            <div id="faq-items">
+                <!-- GENERAL -->
+                <div class="faq-item" data-category="general">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>What makes JG Fit Coach different from other trainers?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>I focus on creating sustainable, personalized plans that fit your lifestyle. With over 5 years of experience in both lifestyle fitness and competitive bodybuilding, I understand that everyone's journey is unique. I provide ongoing support, education, and accountability to help you build lasting habits, not just temporary results.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="general">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>Do you work with beginners?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! I love working with beginners and helping them build a strong foundation. Many of my most successful clients started as complete beginners. I'll teach you proper form, help you understand nutrition basics, and guide you through every step of your fitness journey at a pace that's comfortable for you.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="general">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>What if I have injuries or health concerns?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>I work with clients who have various injuries and health concerns. During our consultation, we'll discuss your specific situation and any limitations. I can modify exercises and create programs that work around your needs. However, I always recommend getting clearance from your healthcare provider before starting any new fitness program.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="general">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>Do you offer virtual/online training?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! I offer both in-person and virtual training options. My online coaching includes custom workout programs, nutrition plans, regular check-ins, and access to my training guidance. Virtual sessions work great for clients who prefer training at home or have busy schedules.</p>
+                    </div>
+                </div>
+
+                <!-- TRAINING -->
+                <div class="faq-item" data-category="training">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>How often should I train per week?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>This depends on your goals, fitness level, and availability. Beginners typically start with 3-4 sessions per week, while more advanced clients might train 5-6 times. During our consultation, we'll determine the optimal frequency for your specific situation and gradually build up as you progress.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="training">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>What equipment do I need for online training?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>For basic programs, you can start with just bodyweight exercises. As you progress, I might recommend basic equipment like resistance bands, dumbbells, or a pull-up bar. I design programs based on what equipment you have access to, whether that's a full gym or just your living room.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="training">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>How long are training sessions?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>In-person sessions are typically 60 minutes, which includes warm-up, main workout, and cool-down. Virtual sessions can be 45-60 minutes depending on your needs. I focus on quality over quantity - every minute is productive and tailored to your goals.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="training">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>What if I miss a scheduled session?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Life happens! I ask for at least 24 hours notice when possible to reschedule sessions. I'm flexible and will work with you to find alternative times. For online coaching, you have the flexibility to complete workouts on your schedule while staying accountable through regular check-ins.</p>
+                    </div>
+                </div>
+
+                <!-- NUTRITION -->
+                <div class="faq-item" data-category="nutrition">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>Do you provide meal plans?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! I create personalized nutrition plans based on your goals, preferences, and lifestyle. Rather than strict meal plans, I focus on teaching you how to make sustainable food choices. I provide macro targets, meal ideas, recipes, and guidance on how to eat out while staying on track.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="nutrition">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>What if I have dietary restrictions?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>I work with all types of dietary preferences and restrictions including vegetarian, vegan, gluten-free, and food allergies. During our consultation, we'll discuss your specific needs and I'll create a nutrition plan that works within your parameters while still helping you reach your goals.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="nutrition">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>Do I need to count calories or track macros?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Tracking can be a helpful tool, but it's not required for everyone. Some clients prefer detailed tracking while others do better with simpler approaches like portion control and food quality focus. I'll assess what approach works best for your personality and lifestyle.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="nutrition">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>Can I still eat out and enjoy social events?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! Part of creating a sustainable plan is learning how to navigate real-life situations. I'll teach you strategies for eating out, handling social events, and making smart choices while still enjoying your life. Balance is key to long-term success.</p>
+                    </div>
+                </div>
+
+                <!-- BOOKING & SCHEDULING -->
+                <div class="faq-item" data-category="booking">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>How do I get started?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Simply fill out the contact form on the website or send me an email. We'll schedule a free consultation call to discuss your goals, answer any questions, and determine which program is the best fit for you. No pressure - just an honest conversation about how I can help you succeed.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="booking">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>What happens during the free consultation?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>During our 20-30 minute call, we'll discuss your fitness goals, experience level, lifestyle, and any challenges you're facing. I'll explain how my programs work and recommend the best approach for your situation. You'll also have the chance to ask any questions about working together.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="booking">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>How far in advance do I need to book sessions?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>For in-person training, I recommend booking at least a week in advance to secure your preferred times. My schedule fills up quickly, especially during peak hours. For online coaching, you can start immediately after we complete your program setup.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="booking">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>What are your available training hours?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>I'm available Monday through Saturday, with flexible hours to accommodate different schedules. Early morning, lunch time, and evening slots are available. For virtual training, we can work around your schedule even more flexibly since there's no travel time involved.</p>
+                    </div>
+                </div>
+
+                <!-- PRICING & PAYMENTS -->
+                <div class="faq-item" data-category="pricing">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>How much do your services cost?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Pricing varies depending on the service and package you choose. Personal training sessions start at $99/hour, online lifestyle coaching at $200/month, and specialized bodybuilding programs at $300/month. Virtual posing sessions are $45 each and in-person posing is $50 per session. I offer package deals for multiple sessions.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="pricing">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>Do you offer payment plans?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, I understand that investing in your health is a big decision. I offer flexible payment options for most programs. We can discuss what works best for your budget during our consultation call.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="pricing">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>Is there a contract or minimum commitment?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>I don't require long-term contracts. Most programs are month-to-month, though I recommend at least 3 months to see significant results. For personal training, you can purchase single sessions or packages. The goal is for you to want to continue because you're seeing results, not because you're locked in.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="pricing">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>What's included in the pricing?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>All programs include personalized planning, ongoing support, and regular check-ins. Online coaching includes custom workouts, nutrition plans, and unlimited email/text support. Personal training includes the session plus program design and progress tracking. No hidden fees!</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="pricing">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>Do you offer refunds?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>I want you to be completely satisfied with your experience. If you're not happy with your program within the first two weeks, we can discuss adjustments or a refund. My goal is your success, and I'll work with you to make sure you're getting value from our work together.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- No Results Message -->
+            <div id="no-results" class="no-results hidden">
+                <div class="no-results-icon">❓</div>
+                <h3>No questions found</h3>
+                <p>Try adjusting your search or category filter.</p>
+            </div>
+
+            <!-- Results Count -->
+            <div id="results-count" class="results-count">
+                Showing <span id="visible-count">21</span> of <span id="total-count">21</span> questions
+            </div>
+        </div>
+    </section>
+
+    <!-- Still Have Questions CTA -->
+    <section class="section cta-section">
+        <div class="container" style="max-width: 800px;">
+            <h2 class="section-title">Still Have Questions?</h2>
+            <p class="section-subtitle">I'm here to help! Reach out and I'll get back to you within 24 hours.</p>
+            
+            <div class="cta-cards">
+                <a href="contact.html" class="cta-button green">
+                    📅 Book Free Consultation
+                </a>
+                <a href="mailto:joel@jgfitcoach.com" class="cta-button orange-outline">
+                    ✉ Email Directly
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                    <div class="logo" style="width: 48px; height: 48px; margin-right: 0.75rem; font-size: 18px;">JG</div>
+                    <div style="color: #9CA3AF; font-style: italic; font-size: 0.9rem;">
+                        Build the best version of you
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Services</h4>
+                <ul class="footer-links">
+                    <li><a href="services.html">Personal Training</a></li>
+                    <li><a href="services.html">Nutrition Coaching</a></li>
+                    <li><a href="services.html">Online Training</a></li>
+                    <li><a href="services.html">Posing Coaching</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/joelg_fitness/?hl=en" target="_blank" class="social-link instagram">📷</a>
+                    <a href="https://www.threads.com/@joelg_fitness" target="_blank" class="social-link threads">@</a>
+                    <a href="mailto:joel@jgfitcoach.com" class="social-link email">✉</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>© 2025 JG Fit Coach. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // FAQ Functionality
+        function toggleFAQ(element) {
+            const faqItem = element.parentElement;
+            const answer = faqItem.querySelector('.faq-answer');
+            const toggle = element.querySelector('.faq-toggle');
+            
+            if (answer.style.display === 'block') {
+                answer.style.display = 'none';
+                toggle.textContent = '+';
+                faqItem.classList.remove('open');
+            } else {
+                answer.style.display = 'block';
+                toggle.textContent = '−';
+                faqItem.classList.add('open');
+            }
+        }
+
+        function searchFAQs() {
+            const searchTerm = document.getElementById('faq-search').value.toLowerCase();
+            const faqItems = document.querySelectorAll('.faq-item');
+            const noResults = document.getElementById('no-results');
+            let visibleCount = 0;
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question h3').textContent.toLowerCase();
+                const answer = item.querySelector('.faq-answer p').textContent.toLowerCase();
+                
+                if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                    item.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            
+            // Update results count
+            document.getElementById('visible-count').textContent = visibleCount;
+            
+            // Show/hide no results message
+            if (visibleCount === 0) {
+                noResults.classList.remove('hidden');
+            } else {
+                noResults.classList.add('hidden');
+            }
+        }
+
+        function filterFAQs(category) {
+            const faqItems = document.querySelectorAll('.faq-item');
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const noResults = document.getElementById('no-results');
+            let visibleCount = 0;
+            
+            // Update active button
+            filterBtns.forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`[data-category="${category}"]`).classList.add('active');
+            
+            // Clear search
+            document.getElementById('faq-search').value = '';
+            
+            faqItems.forEach(item => {
+                if (category === 'all' || item.dataset.category === category) {
+                    item.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            
+            // Update results count
+            document.getElementById('visible-count').textContent = visibleCount;
+            
+            // Show/hide no results message
+            if (visibleCount === 0) {
+                noResults.classList.remove('hidden');
+            } else {
+                noResults.classList.add('hidden');
+            }
+        }
+
+        // Add event listeners for filter buttons
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterFAQs(btn.dataset.category);
+            });
+        });
+
+        // Set initial count
+        document.addEventListener('DOMContentLoaded', function() {
+            const totalItems = document.querySelectorAll('.faq-item').length;
+            document.getElementById('total-count').textContent = totalItems;
+            document.getElementById('visible-count').textContent = totalItems;
+        });
+    </script>
+</body>
+</html>
