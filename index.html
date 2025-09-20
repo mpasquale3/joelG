@@ -10,9 +10,11 @@
     <style>
         /* Gallery section styles */
         .gallery-section {
-            background: white;
-            padding: 4rem 1rem;
-        }
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 4rem 1rem;
+}
 
         .gallery-grid {
             display: grid;
@@ -154,11 +156,19 @@
                 <div class="logo-text">Build the best version of you</div>
             </div>
             
+            <!-- Desktop Navigation -->
             <nav class="nav">
                 <a href="index.html" class="nav-link">Home</a>
                 <a href="services.html" class="nav-link">Services</a>
                 <a href="contact.html" class="nav-link">Contact</a>
             </nav>
+            
+            <!-- Mobile Hamburger Button -->
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle navigation menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
 <!--
             <div class="social-links">
                 <a href="https://www.instagram.com/joelg_fitness/?hl=en" target="_blank" class="social-link instagram">
@@ -173,6 +183,40 @@
             </div>-->
         </div>
     </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="mobile-menu-overlay hidden">
+        <div class="mobile-menu">
+            <div class="mobile-menu-header">
+                <div class="mobile-menu-logo">
+                    <img src="images/jgLogoV1-01.svg" alt="JG Fit Coach Logo">
+                    <span class="mobile-logo-fallback">JG</span>
+                </div>
+                <button class="mobile-menu-close" onclick="toggleMobileMenu()" aria-label="Close navigation menu">
+                    <span>✕</span>
+                </button>
+            </div>
+            <nav class="mobile-nav">
+                <a href="index.html" class="mobile-nav-link" onclick="toggleMobileMenu()">Home</a>
+                <a href="services.html" class="mobile-nav-link" onclick="toggleMobileMenu()">Services</a>
+                <a href="contact.html" class="mobile-nav-link" onclick="toggleMobileMenu()">Contact</a>
+            </nav>
+            <div class="mobile-menu-footer">
+                <div class="mobile-social-links">
+                    <a href="https://www.instagram.com/joelg_fitness/?hl=en" target="_blank" class="social-link instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.threads.com/@joelg_fitness" target="_blank" class="social-link threads">
+                        @
+                    </a>
+                    <a href="mailto:joel@jgfitcoach.com" class="social-link email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+                <p class="mobile-tagline">Build the best version of you</p>
+            </div>
+        </div>
+    </div>
 
     <!-- Hero Section with Carousel -->
     <section class="hero">
@@ -222,13 +266,13 @@
         </div>
     </section>
 
-    <!-- Quiz CTA -->
-    <div class="section" style="padding: 2rem 1rem; text-align: center; background: white;">
-        <button onclick="startQuiz()" class="quiz-cta">
-            <span style="color: #E6AA36; margin-right: 0.5rem;">⭐</span>
-            <span style="color: #374151;">Not sure where to start? Take our quick fitness assessment</span>
-        </button>
-    </div>
+ <!-- Quiz CTA -->
+<div class="section" style="padding: 2rem 1rem; text-align: center; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1);">
+    <button onclick="startQuiz()" class="quiz-cta">
+        <span style="color: #E6AA36; margin-right: 0.5rem;"><i class="fa-regular fa-star"></i></span>
+        <span style="color: #374151;">Not sure where to start? Take our quick fitness assessment</span>
+    </button>
+</div>
 
     <!-- About Section -->
     <section class="section about-section">
@@ -269,7 +313,7 @@
             <div class="cards-grid">
                 <div class="card" onclick="location.href='services.html'">
                     <div class="card-image">
-                        👤
+                        <i class="fa-solid fa-heart"></i>
                     </div>
                     <div class="card-content">
                         <h3 class="card-title">Lifestyle Fitness</h3>
@@ -286,7 +330,7 @@
 
                 <div class="card" onclick="location.href='services.html'">
                     <div class="card-image bodybuilding">
-                        🏋️
+                        <i class="fa-solid fa-dumbbell"></i>
                     </div>
                     <div class="card-content">
                         <h3 class="card-title">Competitive Bodybuilding</h3>
@@ -542,27 +586,27 @@
     </section>
 
     <!-- Quick Actions -->
-    <section class="section cta-section">
-        <div class="container" style="max-width: 800px;">
-            <h2 class="section-title">Ready to Get Started?</h2>
-            
-            <div class="cta-cards">
-                <div class="cta-card">
-                    <div class="cta-icon">📅</div>
-                    <h3>Book Your Consult</h3>
-                    <p>Schedule a free consultation to discuss your goals and find the perfect program for you.</p>
-                    <a href="contact.html" class="cta-button orange">Schedule Now</a>
-                </div>
+<section class="section cta-section">
+    <div class="container" style="max-width: 800px;">
+        <h2 class="section-title">Ready to Get Started?</h2>
+        
+        <div class="cta-cards">
+            <div class="cta-card">
+                <div class="cta-icon"><i class="fa-solid fa-calendar"></i></div>
+                <h3>Schedule Your Consult Today</h3>
+                <p>Book your free consultation directly on my calendar. Choose a time that works best for you.</p>
+                <a href="https://calendly.com/jgfitcoach" target="_blank" class="cta-button orange">Book Now</a>
+            </div>
 
-                <div class="cta-card">
-                    <div class="cta-icon">💬</div>
-                    <h3>Get in Touch</h3>
-                    <p>Have questions? Send me a message and I'll get back to you within 24 hours.</p>
-                    <a href="mailto:joel@jgfitcoach.com" class="cta-button green">Contact Me</a>
-                </div>
+            <div class="cta-card">
+                <div class="cta-icon"><i class="fa-solid fa-clipboard-list"></i></div>
+                <h3>Tell Me About Your Goals</h3>
+                <p>Share your fitness goals first, then schedule your consultation for a more personalized experience.</p>
+                <a href="contact.html" class="cta-button green">Share Goals & Schedule</a>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Footer -->
     <footer class="footer">
@@ -597,7 +641,7 @@
                 <ul class="footer-links">
                     <li><a href="index.html">About</a></li>
                     <li><a href="contact.html">Contact</a></li>
-                    <li><a href="#" onclick="openFAQ()">FAQ</a></li>
+                    <li><a href="faq.html" onclick="openFAQ()">FAQ</a></li>
                 </ul>
             </div>
             
@@ -653,8 +697,7 @@
                 <p id="result-description" style="color: #6B7280; margin-bottom: 2rem;"></p>
                 <div style="display: flex; flex-direction: column; gap: 0.75rem;">
                     <button id="view-services" class="cta-button" onclick="window.location.href='services.html'">View Recommended Services</button>
-                    <button class="cta-button" onclick="window.location.href='contact.html'" style="background: transparent; border: 2px solid #5FEFA7; color: #5FEFA7;">Book Free Consultation</button>
-                </div>
+<button class="cta-button" onclick="window.location.href='https://calendly.com/jgfitcoach'" style="background: transparent; border: 2px solid #5FEFA7; color: #5FEFA7;">Quick Schedule Consultation</button>                </div>
             </div>
         </div>
     </div>
@@ -668,6 +711,41 @@
     <script src="js/main.js"></script>
     <script src="js/quiz.js"></script>
     <script>
+        // Mobile menu functionality
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuToggle = document.querySelector('.mobile-menu-toggle');
+            
+            if (mobileMenu.classList.contains('hidden')) {
+                // Open menu
+                mobileMenu.classList.remove('hidden');
+                menuToggle.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
+            } else {
+                // Close menu
+                mobileMenu.classList.add('hidden');
+                menuToggle.classList.remove('active');
+                document.body.style.overflow = ''; // Restore scrolling
+            }
+        }
+
+        // Close mobile menu when clicking overlay
+        document.getElementById('mobile-menu').addEventListener('click', (e) => {
+            if (e.target.classList.contains('mobile-menu-overlay')) {
+                toggleMobileMenu();
+            }
+        });
+
+        // Close mobile menu with escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (!mobileMenu.classList.contains('hidden')) {
+                    toggleMobileMenu();
+                }
+            }
+        });
+
         // Gallery modal functionality
         function openGalleryModal(imageSrc, imageAlt) {
             const modal = document.getElementById('gallery-modal');

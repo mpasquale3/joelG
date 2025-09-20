@@ -6,13 +6,17 @@
     <title>FAQ - JG Fit Coach</title>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <!-- Header -->
     <header class="header">
         <div class="header-content">
             <div class="logo-section" onclick="location.href='index.html'">
-                <div class="logo">JG</div>
+                <div class="logo">
+                    <img src="images/jgLogoV1-01.svg" alt="JG Fit Coach Logo">
+                    <span class="logo-fallback">JG</span>
+                </div>
                 <div class="logo-text">Build the best version of you</div>
             </div>
             
@@ -25,13 +29,13 @@
 <!--
             <div class="social-links">
                 <a href="https://www.instagram.com/joelg_fitness/?hl=en" target="_blank" class="social-link instagram">
-                    <span style="color: white; font-weight: bold;">📷</span>
+                    <i class="fab fa-instagram"></i>
                 </a>
                 <a href="https://www.threads.com/@joelg_fitness" target="_blank" class="social-link threads">
-                    <span style="color: white; font-weight: bold;">@</span>
+                    @
                 </a>
                 <a href="mailto:joel@jgfitcoach.com" class="social-link email">
-                    <span style="color: white;">✉</span>
+                    <i class="fas fa-envelope"></i>
                 </a>
             </div>-->
         </div>
@@ -50,7 +54,7 @@
         <div class="container" style="max-width: 800px;">
             <!-- Search Bar -->
             <div class="search-container">
-                <div class="search-icon">🔍</div>
+                <div class="search-icon"><i class="fas fa-search"></i></div>
                 <input type="text" id="faq-search" placeholder="Search questions..." oninput="searchFAQs()">
             </div>
 
@@ -77,7 +81,7 @@
                         <span class="faq-toggle">+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>I focus on creating sustainable, personalized plans that fit your lifestyle. With over 5 years of experience in both lifestyle fitness and competitive bodybuilding, I understand that everyone's journey is unique. I provide ongoing support, education, and accountability to help you build lasting habits, not just temporary results.</p>
+                        <p>I focus on creating sustainable, personalized plans that fit your lifestyle. With over 4 years of experience in both lifestyle fitness and competitive bodybuilding, I understand that everyone's journey is unique. I provide ongoing support, education, and accountability to help you build lasting habits, not just temporary results.</p>
                     </div>
                 </div>
 
@@ -288,7 +292,7 @@
 
             <!-- No Results Message -->
             <div id="no-results" class="no-results hidden">
-                <div class="no-results-icon">❓</div>
+                <div class="no-results-icon"><i class="fas fa-question-circle"></i></div>
                 <h3>No questions found</h3>
                 <p>Try adjusting your search or category filter.</p>
             </div>
@@ -300,35 +304,46 @@
         </div>
     </section>
 
-    <!-- Still Have Questions CTA -->
-    <section class="section cta-section">
-        <div class="container" style="max-width: 800px;">
-            <h2 class="section-title">Still Have Questions?</h2>
-            <p class="section-subtitle">I'm here to help! Reach out and I'll get back to you within 24 hours.</p>
-            
-            <div class="cta-cards">
-                <a href="contact.html" class="cta-button green">
-                    📅 Book Free Consultation
-                </a>
-                <a href="mailto:joel@jgfitcoach.com" class="cta-button orange-outline">
-                    ✉ Email Directly
-                </a>
-            </div>
+ <!-- Still Have Questions CTA -->
+<section class="section cta-section">
+    <div class="container" style="max-width: 800px;">
+        <h2 class="section-title">Still Have Questions?</h2>
+        <p class="section-subtitle">I'm here to help! Choose how you'd like to connect with me.</p>
+        
+        <div class="cta-cards">
+            <a href="https://calendly.com/jgfitcoach" target="_blank" class="cta-button green">
+                <i class="fas fa-calendar-alt"></i> Book Free Consultation
+            </a>
+            <a href="contact.html" class="cta-button orange">
+                <i class="fas fa-clipboard-list"></i> Share Goals & Schedule
+            </a>
         </div>
-    </section>
+        
+        <div style="text-align: center; margin-top: 1.5rem;">
+            <a href="mailto:joel@jgfitcoach.com" class="cta-button green-outline">
+                <i class="fas fa-envelope"></i> Email Directly
+            </a>
+        </div>
+    </div>
+</section>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
+            <!-- Column 1: Logo and Slogan -->
             <div class="footer-section">
                 <div style="display: flex; align-items: center; margin-bottom: 1rem;">
-                    <div class="logo" style="width: 48px; height: 48px; margin-right: 0.75rem; font-size: 18px;">JG</div>
+                    <div class="footer-logo">
+                        <img src="images/jgLogoV1-01.svg" alt="JG Fit Coach Logo">
+                        <span class="footer-logo-fallback">JG</span>
+                    </div>
                     <div style="color: #9CA3AF; font-style: italic; font-size: 0.9rem;">
                         Build the best version of you
                     </div>
                 </div>
             </div>
             
+            <!-- Column 2: Services -->
             <div class="footer-section">
                 <h4>Services</h4>
                 <ul class="footer-links">
@@ -339,6 +354,7 @@
                 </ul>
             </div>
             
+            <!-- Column 3: Quick Links -->
             <div class="footer-section">
                 <h4>Quick Links</h4>
                 <ul class="footer-links">
@@ -348,12 +364,19 @@
                 </ul>
             </div>
             
+            <!-- Column 4: Connect -->
             <div class="footer-section">
                 <h4>Connect</h4>
                 <div class="social-links">
-                    <a href="https://www.instagram.com/joelg_fitness/?hl=en" target="_blank" class="social-link instagram">📷</a>
-                    <a href="https://www.threads.com/@joelg_fitness" target="_blank" class="social-link threads">@</a>
-                    <a href="mailto:joel@jgfitcoach.com" class="social-link email">✉</a>
+                    <a href="https://www.instagram.com/joelg_fitness/?hl=en" target="_blank" class="social-link instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.threads.com/@joelg_fitness" target="_blank" class="social-link threads">
+                        @
+                    </a>
+                    <a href="mailto:joel@jgfitcoach.com" class="social-link email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
                 </div>
             </div>
         </div>

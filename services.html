@@ -9,14 +9,48 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Services page specific styles only */
-    <style>
-        /* Services page specific styles only */
+        
+        /* Updated Services Grid - Desktop Grid, Mobile List */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
+            
+            /* Desktop: 2-3 columns depending on screen size */
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        /* Large desktop: 3 columns */
+        @media (min-width: 1200px) {
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 2.5rem;
+            }
+        }
+
+        /* Medium desktop: 2 columns */
+        @media (min-width: 769px) and (max-width: 1199px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+        }
+
+        /* Tablet: 2 columns */
+        @media (min-width: 640px) and (max-width: 768px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+        }
+
+        /* Mobile: Single column (list view) */
+        @media (max-width: 639px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
         }
 
         .service-card {
@@ -26,6 +60,9 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
             cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            height: 100%; /* All cards same height */
         }
 
         .service-card:hover {
@@ -71,6 +108,9 @@
 
         .service-content {
             padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
         }
 
         .service-header {
@@ -124,9 +164,11 @@
             margin-bottom: 1.5rem;
             line-height: 1.5;
             font-size: 0.95rem;
+            flex-grow: 1; /* Push button to bottom */
         }
 
         .view-details-btn {
+            margin-top: auto; /* Align all buttons at bottom */
             width: 100%;
             padding: 0.75rem;
             border: none;
@@ -192,6 +234,31 @@
         .modal-content {
             padding: 2rem;
         }
+
+        /* Add this to the <style> section in your services.html file */
+
+/* Bodybuilding service modal styling - Orange theme */
+
+/* Orange checkmarks for bodybuilding services */
+.modal:has(.modal-service-price.bodybuilding) .features-list li::before {
+    color: var(--orange);
+}
+
+/* Orange left border for service information boxes in bodybuilding modals */
+.modal:has(.modal-service-price.bodybuilding) .info-item {
+    border-left: 3px solid var(--orange);
+}
+
+/* Alternative approach if :has() doesn't work in some browsers */
+/*
+.bodybuilding-modal .features-list li::before {
+    color: var(--orange);
+}
+
+.bodybuilding-modal .info-item {
+    border-left: 3px solid var(--orange);
+}
+*/
 
         .detail-section {
             margin-bottom: 2rem;
@@ -277,6 +344,10 @@
             transition: all 0.2s;
             border: 2px solid transparent;
             font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1rem;
         }
 
         .action-btn.primary.lifestyle {
@@ -333,12 +404,8 @@
             }
         }
 
-        /* Responsive */
+        /* Additional Mobile Responsive */
         @media (max-width: 768px) {
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-            
             .modal {
                 margin: 0.5rem;
                 max-height: 95vh;
@@ -349,7 +416,6 @@
                 padding: 1.5rem;
             }
         }
-    </style>
     </style>
 </head>
 <body>
@@ -404,6 +470,14 @@
         </div>
     </section>
 
+ <!-- Quiz CTA -->
+<div class="section" style="padding: 2rem 1rem; text-align: center; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1);">
+    <button onclick="startQuiz()" class="quiz-cta">
+        <span style="color: #E6AA36; margin-right: 0.5rem;"><i class="fa-regular fa-star"></i></span>
+        <span style="color: #374151;">Not sure where to start? Take our quick fitness assessment</span>
+    </button>
+</div>
+
     <!-- Services Section -->
     <section class="section">
         <div class="container">
@@ -411,7 +485,7 @@
                 <!-- Online Lifestyle Coaching -->
                 <div class="service-card lifestyle-service" data-category="lifestyle">
                     <div class="service-image">
-                        <div class="service-icon lifestyle">👤</div>
+                        <div class="service-icon lifestyle"><i class="fa-solid fa-heart"></i></div>
                         <span>Service Image</span>
                     </div>
                     <div class="service-content">
@@ -431,7 +505,7 @@
                 <!-- In-Person Training -->
                 <div class="service-card lifestyle-service" data-category="lifestyle">
                     <div class="service-image">
-                        <div class="service-icon lifestyle">🏋️</div>
+                        <div class="service-icon lifestyle"><i class="fa-solid fa-weight-hanging"></i></div>
                         <span>Service Image</span>
                     </div>
                     <div class="service-content">
@@ -451,12 +525,12 @@
                 <!-- Online Bodybuilding Coaching -->
                 <div class="service-card bodybuilding-service" data-category="bodybuilding">
                     <div class="service-image">
-                        <div class="service-icon bodybuilding">🏆</div>
+                        <div class="service-icon bodybuilding"><i class="fa-solid fa-dumbbell"></i></div>
                         <span>Service Image</span>
                     </div>
                     <div class="service-content">
                         <div class="service-header">
-                            <span class="service-level bodybuilding">Advanced</span>
+                            <span class="service-level bodybuilding">Intermediate</span>
                             <span class="service-price bodybuilding">$300/month</span>
                         </div>
                         <h3 class="service-title">Online Bodybuilding Athlete Training</h3>
@@ -471,15 +545,15 @@
                 <!-- Virtual Posing Coaching -->
                 <div class="service-card bodybuilding-service" data-category="bodybuilding">
                     <div class="service-image">
-                        <div class="service-icon bodybuilding">📹</div>
+                        <div class="service-icon bodybuilding"><i class="fa-solid fa-video"></i></div>
                         <span>Service Image</span>
                     </div>
                     <div class="service-content">
                         <div class="service-header">
-                            <span class="service-level bodybuilding">Intermediate</span>
+                            <span class="service-level bodybuilding">All Levels</span>
                             <span class="service-price bodybuilding">$45/session</span>
                         </div>
-                        <h3 class="service-title">Live Virtual Bodybuilding Posing</h3>
+                        <h3 class="service-title">Online Bodybuilding Posing</h3>
                         <p class="service-description">Physique and Bodybuilding Posing including mandatory poses + routine design to perfect your stage presentation.</p>
                         
                         <button class="view-details-btn bodybuilding" onclick="openServiceModal('virtual-posing')">
@@ -491,7 +565,7 @@
                 <!-- In-Person Posing -->
                 <div class="service-card bodybuilding-service" data-category="bodybuilding">
                     <div class="service-image">
-                        <div class="service-icon bodybuilding">🎯</div>
+                        <div class="service-icon bodybuilding"><i class="fa-solid fa-camera-retro"></i></div>
                         <span>Service Image</span>
                     </div>
                     <div class="service-content">
@@ -511,18 +585,20 @@
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="container" style="max-width: 800px;">
-            <h2 class="section-title">Not Sure Which Service is Right for You?</h2>
-            <p class="section-subtitle">Book a free consultation to discuss your goals and find the perfect program for your needs.</p>
-            
-            <div class="cta-buttons">
-                <a href="contact.html" class="cta-button orange">Schedule Free Consultation</a>
-                <button onclick="startQuiz()" class="cta-button green-outline">Take Fitness Quiz</button>
-            </div>
+   <!-- CTA Section -->
+<section class="cta-section">
+    <div class="container" style="max-width: 800px;">
+        <h2 class="section-title">Not Sure Which Service is Right for You?</h2>
+        <p class="section-subtitle">Choose how you'd like to get started with your fitness journey</p>
+        
+        <div class="cta-buttons">
+            <a href="https://calendly.com/jgfitcoach" target="_blank" class="cta-button orange">Quick Schedule - Book Now</a>
+            <a href="contact.html" class="cta-button green">Share Goals First, Then Schedule</a>
         </div>
-    </section>
+        
+        
+    </div>
+</section>
 
     <!-- Footer -->
     <footer class="footer">
@@ -643,8 +719,8 @@
                 <p id="result-description" style="color: #6B7280; margin-bottom: 2rem;"></p>
                 <div style="display: flex; flex-direction: column; gap: 0.75rem;">
                     <button id="view-services" class="cta-button" onclick="filterServicesFromQuiz()">View Recommended Services</button>
-                    <button class="cta-button" onclick="window.location.href='contact.html'" style="background: transparent; border: 2px solid #5FEFA7; color: #5FEFA7;">Book Free Consultation</button>
-                </div>
+               <button class="cta-button" onclick="window.open('https://calendly.com/jgfitcoach', '_blank')" style="background: transparent; border: 2px solid #5FEFA7; color: #5FEFA7;">Quick Schedule Consultation</button>
+             </div>
             </div>
         </div>
     </div>
@@ -833,7 +909,7 @@
                 ideal: 'Any individual pursuing physique enhancement or competition prep, committed to structured training, disciplined nutrition, and continuous improvement. Perfect for both beginners and experienced athletes.'
             },
             'virtual-posing': {
-                title: 'Live Virtual Bodybuilding Posing',
+                title: 'Virtual Bodybuilding Posing',
                 price: '$45/session',
                 description: 'Physique and Bodybuilding Posing including mandatory poses + routine design to perfect your stage presentation.',
                 category: 'bodybuilding',
