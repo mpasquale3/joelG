@@ -522,6 +522,27 @@
                     </div>
                 </div>
 
+
+                   <!-- Personal Chef Services -->
+                <div class="service-card lifestyle-service" data-category="lifestyle">
+                    <div class="service-image">
+                        <div class="service-icon lifestyle"><i class="fa-solid fa-bowl-food"></i></div>
+                        <span>Service Image</span>
+                    </div>
+                    <div class="service-content">
+                        <div class="service-header">
+                            <span class="service-level lifestyle">All Levels</span>
+                            <span class="service-price lifestyle">Varies - Distance</span>
+                        </div>
+                        <h3 class="service-title">Personal Chef Services</h3>
+                        <p class="service-description">Healthy flavorful, physique-friendly meals. Chef-prepped and dropped at your doorstep. </p>
+                        
+                        <button class="view-details-btn lifestyle" onclick="openServiceModal('personal-chef-services')">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+
                 <!-- Online Bodybuilding Coaching -->
                 <div class="service-card bodybuilding-service" data-category="bodybuilding">
                     <div class="service-image">
@@ -581,6 +602,8 @@
                         </button>
                     </div>
                 </div>
+
+              
             </div>
         </div>
     </section>
@@ -848,104 +871,126 @@
             document.body.style.overflow = '';
         }
 
-        // Service data
-        const serviceData = {
-            'lifestyle-coaching': {
-                title: 'Online Lifestyle Fitness Coaching',
-                price: '$200/month',
-                description: 'Subscription-based online coaching program delivering personalized nutrition & fitness guidance through weekly check-ins and continuous support.',
-                category: 'lifestyle',
-                info: [
-                    { label: 'Duration', value: 'Until Cancellation (requires 30 day notice)' },
-                    { label: 'Format', value: 'Virtual Remote' }
-                ],
-                features: [
-                    'Weekly Check-ins structured to monitor progress',
-                    'Personalized Nutrition Programming with tailored meal plans',
-                    'Customized Training Plan designed for your fitness level',
-                    'Exclusive Messaging Support via email and text',
-                    'Ongoing Weekly Adjustments based on your progress'
-                ],
-                ideal: 'Any individual wanting to increase performance, improve their health, recovery and nutrition habits with the mindset of optimizing longevity and seeking detailed guidance from a Certified Coach.'
-            },
-            'in-person-training': {
-                title: 'In Person (1-on-1) Training',
-                price: '$99/hour',
-                description: 'Certified Personal Training delivered to the convenience of your home or local gym with personalized programming, expert guidance, and hands-on coaching.',
-                category: 'lifestyle',
-                info: [
-                    { label: 'Duration', value: '1 hour sessions' },
-                    { label: 'Format', value: 'In Person Only (Denver Metro Area)' }
-                ],
-                features: [
-                    'Personalized Assessment & Program Design',
-                    'Mobility and Functional Training',
-                    'Equipment-Flexible Workout Design',
-                    'On-Location Training Sessions',
-                    'Progress Monitoring & Adjustments',
-                    'NASM Certified Nutrition Coaching'
-                ],
-                ideal: 'A busy professional, parent, or athlete seeking personalized training that fits their schedule and location. Perfect for those who value expertise and appreciate the convenience of customized workouts.'
-            },
-            'bodybuilding-coaching': {
-                title: 'Online Bodybuilding Athlete Training',
-                price: '$300/month',
-                description: 'Bodybuilding and Physique Coaching including Nutrition Programming, Training + Posing for serious competitors and physique enthusiasts.',
-                category: 'bodybuilding',
-                info: [
-                    { label: 'Duration', value: '6 months minimum' },
-                    { label: 'Format', value: 'Virtual only' }
-                ],
-                features: [
-                    'Weekly check-ins with personalized video response',
-                    'Nutrition Programming based on competition goals',
-                    'Periodized Training Plan focused on progressive overload',
-                    'Video Exercise Reviews with detailed feedback',
-                    'Routine design for stage presentation',
-                    'Bloodwork Analysis for optimal performance',
-                    'Supplement Guidance and contest prep strategies',
-                    'Ongoing Progress Monitoring and support'
-                ],
-                ideal: 'Any individual pursuing physique enhancement or competition prep, committed to structured training, disciplined nutrition, and continuous improvement. Perfect for both beginners and experienced athletes.'
-            },
-            'virtual-posing': {
-                title: 'Virtual Bodybuilding Posing',
-                price: '$45/session',
-                description: 'Physique and Bodybuilding Posing including mandatory poses + routine design to perfect your stage presentation.',
-                category: 'bodybuilding',
-                info: [
-                    { label: 'Duration', value: '50 min sessions' },
-                    { label: 'Format', value: 'Virtual only' }
-                ],
-                features: [
-                    'Mandatory Pose Breakdown with detailed instruction',
-                    'Smooth, confident transitions between poses',
-                    'Routine Design & Choreography personalized to your physique',
-                    'Real-time video conferencing for detailed feedback'
-                ],
-                ideal: 'Competitive bodybuilder or classic physique athlete seeking to refine mandatory poses, transitions, and stage presence. Perfect for both novice and seasoned competitors wanting expert feedback.'
-            },
-            'in-person-posing': {
-                title: 'In-Person Bodybuilding Posing',
-                price: '$50/session',
-                description: 'In-Person Posing Coaching for Bodybuilding & Classic Physique to master your stage presentation and build confidence.',
-                category: 'bodybuilding',
-                info: [
-                    { label: 'Duration', value: '1 hour session' },
-                    { label: 'Format', value: 'In-Person (Denver Metro Area)' }
-                ],
-                features: [
-                    'Mandatory Poses breakdown for perfect form',
-                    'Smooth Transitions between poses',
-                    'Routine Design & Choreography',
-                    'Stage Presence and confidence building',
-                    'Endurance Practice for competition demands',
-                    'Video Analysis & Recording for improvement'
-                ],
-                ideal: 'Any bodybuilding or classic physique competitor, regardless of experience level. Perfect for first-timers learning fundamentals and seasoned athletes seeking to refine their stage presentation.'
-            }
-        };
+        // Complete serviceData object - add the personal-chef-services entry to your existing object:
 
+const serviceData = {
+    'lifestyle-coaching': {
+        title: 'Online Lifestyle Fitness Coaching',
+        price: '$200/month',
+        description: 'Subscription-based online coaching program delivering personalized nutrition & fitness guidance through weekly check-ins and continuous support.',
+        category: 'lifestyle',
+        info: [
+            { label: 'Duration', value: 'Until Cancellation (requires 30 day notice)' },
+            { label: 'Format', value: 'Virtual Remote' }
+        ],
+        features: [
+            'Weekly Check-ins structured to monitor progress',
+            'Personalized Nutrition Programming with tailored meal plans',
+            'Customized Training Plan designed for your fitness level',
+            'Exclusive Messaging Support via email and text',
+            'Ongoing Weekly Adjustments based on your progress'
+        ],
+        ideal: 'Any individual wanting to increase performance, improve their health, recovery and nutrition habits with the mindset of optimizing longevity and seeking detailed guidance from a Certified Coach.'
+    },
+    'in-person-training': {
+        title: 'In Person (1-on-1) Training',
+        price: '$99/hour',
+        description: 'Certified Personal Training delivered to the convenience of your home or local gym with personalized programming, expert guidance, and hands-on coaching.',
+        category: 'lifestyle',
+        info: [
+            { label: 'Duration', value: '1 hour sessions' },
+            { label: 'Format', value: 'In Person Only (Denver Metro Area)' }
+        ],
+        features: [
+            'Personalized Assessment & Program Design',
+            'Mobility and Functional Training',
+            'Equipment-Flexible Workout Design',
+            'On-Location Training Sessions',
+            'Progress Monitoring & Adjustments',
+            'NASM Certified Nutrition Coaching'
+        ],
+        ideal: 'A busy professional, parent, or athlete seeking personalized training that fits their schedule and location. Perfect for those who value expertise and appreciate the convenience of customized workouts.'
+    },
+    // ADD THIS NEW ENTRY FOR PERSONAL CHEF SERVICES:
+    'personal-chef-services': {
+        title: 'Personal Chef Services',
+        price: 'Varies by order',
+        description: 'Healthy, flavorful, physique-friendly meals—chef-prepped and dropped at your doorstep.',
+        category: 'lifestyle',
+        info: [
+            { label: 'Duration', value: 'Weekly Menu Updates, Order by Friday - Delivered Monday' },
+            { label: 'Format', value: 'Denver Metro Area Only' },
+            { label: 'Pricing', value: '1.25x grocery cost + $0.67/mile' }
+        ],
+        features: [
+            'Fully customized meals based on your goals (cutting, bulking, maintenance)',
+            'Flavor-forward recipes designed by a former Executive Chef & Certified Nutritionist', 
+            'Flexible options: single-day prep or weekly packages',
+            'Transparent pricing and premium ingredient sourcing',
+            'Vacuum sealed, ready-to-heat meals delivered to your door',
+            'Professional food safety standards and allergen awareness',
+            'High-quality, locally sourced ingredients'
+        ],
+        ideal: 'Busy professionals, physique athletes, and health-conscious individuals who value convenience without compromising nutrition or flavor. Perfect for those who want chef-crafted, macro-aligned meals tailored to their goals and delivered fresh to their door.'
+    },
+    'bodybuilding-coaching': {
+        title: 'Online Bodybuilding Athlete Training',
+        price: '$300/month',
+        description: 'Bodybuilding and Physique Coaching including Nutrition Programming, Training + Posing for serious competitors and physique enthusiasts.',
+        category: 'bodybuilding',
+        info: [
+            { label: 'Duration', value: '6 months minimum' },
+            { label: 'Format', value: 'Virtual only' }
+        ],
+        features: [
+            'Weekly check-ins with personalized video response',
+            'Nutrition Programming based on competition goals',
+            'Periodized Training Plan focused on progressive overload',
+            'Video Exercise Reviews with detailed feedback',
+            'Routine design for stage presentation',
+            'Bloodwork Analysis for optimal performance',
+            'Supplement Guidance and contest prep strategies',
+            'Ongoing Progress Monitoring and support'
+        ],
+        ideal: 'Any individual pursuing physique enhancement or competition prep, committed to structured training, disciplined nutrition, and continuous improvement. Perfect for both beginners and experienced athletes.'
+    },
+    'virtual-posing': {
+        title: 'Virtual Bodybuilding Posing',
+        price: '$45/session',
+        description: 'Physique and Bodybuilding Posing including mandatory poses + routine design to perfect your stage presentation.',
+        category: 'bodybuilding',
+        info: [
+            { label: 'Duration', value: '50 min sessions' },
+            { label: 'Format', value: 'Virtual only' }
+        ],
+        features: [
+            'Mandatory Pose Breakdown with detailed instruction',
+            'Smooth, confident transitions between poses',
+            'Routine Design & Choreography personalized to your physique',
+            'Real-time video conferencing for detailed feedback'
+        ],
+        ideal: 'Competitive bodybuilder or classic physique athlete seeking to refine mandatory poses, transitions, and stage presence. Perfect for both novice and seasoned competitors wanting expert feedback.'
+    },
+    'in-person-posing': {
+        title: 'In-Person Bodybuilding Posing',
+        price: '$50/session',
+        description: 'In-Person Posing Coaching for Bodybuilding & Classic Physique to master your stage presentation and build confidence.',
+        category: 'bodybuilding',
+        info: [
+            { label: 'Duration', value: '1 hour session' },
+            { label: 'Format', value: 'In-Person (Denver Metro Area)' }
+        ],
+        features: [
+            'Mandatory Poses breakdown for perfect form',
+            'Smooth Transitions between poses',
+            'Routine Design & Choreography',
+            'Stage Presence and confidence building',
+            'Endurance Practice for competition demands',
+            'Video Analysis & Recording for improvement'
+        ],
+        ideal: 'Any bodybuilding or classic physique competitor, regardless of experience level. Perfect for first-timers learning fundamentals and seasoned athletes seeking to refine their stage presentation.'
+    }
+};
         // Filter functionality
         function filterServices(category = 'all') {
             const filterBtns = document.querySelectorAll('.filter-btn');
