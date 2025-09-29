@@ -54,7 +54,7 @@
         }
 
         .service-card {
-            background: white;
+            background: #F9FAFB;
             border-radius: 1rem;
             overflow: hidden;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
@@ -72,33 +72,50 @@
 
         .service-image {
             height: 180px;
-            background: #EBEBEC;
             position: relative;
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #999;
-            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .service-image.lifestyle-bg {
+            background: linear-gradient(135deg, rgba(95, 239, 167, 0.15) 0%, rgba(95, 239, 167, 0.05) 100%);
+        }
+
+        .service-image.bodybuilding-bg {
+            background: linear-gradient(135deg, rgba(230, 170, 54, 0.15) 0%, rgba(230, 170, 54, 0.05) 100%);
+        }
+
+        .service-image span {
+            display: none;
         }
 
         .service-icon {
-            position: absolute;
-            top: 1rem;
-            left: 1rem;
-            width: 40px;
-            height: 40px;
+            position: relative;
+            top: auto;
+            left: auto;
+            width: 95px;
+            height: 95px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: 2.8rem;
             z-index: 10;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
         }
 
         .service-icon.lifestyle {
             background: var(--green);
-            color: white;
+            color: var(--dark);
         }
 
         .service-icon.bodybuilding {
@@ -235,30 +252,14 @@
             padding: 2rem;
         }
 
-        /* Add this to the <style> section in your services.html file */
+        /* Bodybuilding service modal styling - Orange theme */
+        .modal:has(.modal-service-price.bodybuilding) .features-list li::before {
+            color: var(--orange);
+        }
 
-/* Bodybuilding service modal styling - Orange theme */
-
-/* Orange checkmarks for bodybuilding services */
-.modal:has(.modal-service-price.bodybuilding) .features-list li::before {
-    color: var(--orange);
-}
-
-/* Orange left border for service information boxes in bodybuilding modals */
-.modal:has(.modal-service-price.bodybuilding) .info-item {
-    border-left: 3px solid var(--orange);
-}
-
-/* Alternative approach if :has() doesn't work in some browsers */
-/*
-.bodybuilding-modal .features-list li::before {
-    color: var(--orange);
-}
-
-.bodybuilding-modal .info-item {
-    border-left: 3px solid var(--orange);
-}
-*/
+        .modal:has(.modal-service-price.bodybuilding) .info-item {
+            border-left: 3px solid var(--orange);
+        }
 
         .detail-section {
             margin-bottom: 2rem;
@@ -290,6 +291,7 @@
             padding: 1rem;
             border-radius: 0.5rem;
             border-left: 3px solid var(--green);
+            color: #6B7280;
         }
 
         .info-item strong {
@@ -434,22 +436,50 @@
                 <a href="index.html" class="nav-link">Home</a>
                 <a href="services.html" class="nav-link active">Services</a>
                 <a href="contact.html" class="nav-link">Contact</a>
-                
             </nav>
-<!--
-            <div class="social-links">
-                <a href="https://www.instagram.com/joelg_fitness/?hl=en" target="_blank" class="social-link instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://www.threads.com/@joelg_fitness" target="_blank" class="social-link threads">
-                    @
-                </a>
-                <a href="mailto:joel@jgfitcoach.com" class="social-link email">
-                    <i class="fas fa-envelope"></i>
-                </a>
-            </div>-->
+            
+            <!-- Mobile Hamburger Button -->
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle navigation menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
         </div>
     </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="mobile-menu-overlay hidden">
+        <div class="mobile-menu">
+            <div class="mobile-menu-header">
+                <div class="mobile-menu-logo">
+                    <img src="images/jgLogoV1-01.svg" alt="JG Fit Coach Logo">
+                    <span class="mobile-logo-fallback">JG</span>
+                </div>
+                <button class="mobile-menu-close" onclick="toggleMobileMenu()" aria-label="Close navigation menu">
+                    <span>✕</span>
+                </button>
+            </div>
+            <nav class="mobile-nav">
+                <a href="index.html" class="mobile-nav-link" onclick="toggleMobileMenu()">Home</a>
+                <a href="services.html" class="mobile-nav-link" onclick="toggleMobileMenu()">Services</a>
+                <a href="contact.html" class="mobile-nav-link" onclick="toggleMobileMenu()">Contact</a>
+            </nav>
+            <div class="mobile-menu-footer">
+                <div class="mobile-social-links">
+                    <a href="https://www.instagram.com/joelg_fitness/?hl=en" target="_blank" class="social-link instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.threads.com/@joelg_fitness" target="_blank" class="social-link threads">
+                        @
+                    </a>
+                    <a href="mailto:joel@jgfitcoach.com" class="social-link email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+                <p class="mobile-tagline">Build the best version of you</p>
+            </div>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero-small">
@@ -470,13 +500,13 @@
         </div>
     </section>
 
- <!-- Quiz CTA -->
-<div class="section" style="padding: 2rem 1rem; text-align: center; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1);">
-    <button onclick="startQuiz()" class="quiz-cta">
-        <span style="color: #E6AA36; margin-right: 0.5rem;"><i class="fa-regular fa-star"></i></span>
-        <span style="color: #374151;">Not sure where to start? Take our quick fitness assessment</span>
-    </button>
-</div>
+    <!-- Quiz CTA -->
+    <div class="section" style="padding: 2rem 1rem; text-align: center; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1);">
+        <button onclick="startQuiz()" class="quiz-cta">
+            <span style="color: #E6AA36; margin-right: 0.5rem;"><i class="fa-regular fa-star"></i></span>
+            <span style="color: #374151;">Not sure where to start? Take our quick fitness assessment</span>
+        </button>
+    </div>
 
     <!-- Services Section -->
     <section class="section">
@@ -484,7 +514,7 @@
             <div class="services-grid">
                 <!-- Online Lifestyle Coaching -->
                 <div class="service-card lifestyle-service" data-category="lifestyle">
-                    <div class="service-image">
+                    <div class="service-image lifestyle-bg">
                         <div class="service-icon lifestyle"><i class="fa-solid fa-heart"></i></div>
                         <span>Service Image</span>
                     </div>
@@ -504,7 +534,7 @@
 
                 <!-- In-Person Training -->
                 <div class="service-card lifestyle-service" data-category="lifestyle">
-                    <div class="service-image">
+                    <div class="service-image lifestyle-bg">
                         <div class="service-icon lifestyle"><i class="fa-solid fa-weight-hanging"></i></div>
                         <span>Service Image</span>
                     </div>
@@ -522,10 +552,9 @@
                     </div>
                 </div>
 
-
-                   <!-- Personal Chef Services -->
+                <!-- Personal Chef Services -->
                 <div class="service-card lifestyle-service" data-category="lifestyle">
-                    <div class="service-image">
+                    <div class="service-image lifestyle-bg">
                         <div class="service-icon lifestyle"><i class="fa-solid fa-bowl-food"></i></div>
                         <span>Service Image</span>
                     </div>
@@ -535,7 +564,7 @@
                             <span class="service-price lifestyle">Varies - Distance</span>
                         </div>
                         <h3 class="service-title">Personal Chef Services</h3>
-                        <p class="service-description">Healthy flavorful, physique-friendly meals. Chef-prepped and dropped at your doorstep. </p>
+                        <p class="service-description">Healthy flavorful, physique-friendly meals. Chef-prepped and dropped at your doorstep.</p>
                         
                         <button class="view-details-btn lifestyle" onclick="openServiceModal('personal-chef-services')">
                             View Details
@@ -545,7 +574,7 @@
 
                 <!-- Online Bodybuilding Coaching -->
                 <div class="service-card bodybuilding-service" data-category="bodybuilding">
-                    <div class="service-image">
+                    <div class="service-image bodybuilding-bg">
                         <div class="service-icon bodybuilding"><i class="fa-solid fa-dumbbell"></i></div>
                         <span>Service Image</span>
                     </div>
@@ -565,7 +594,7 @@
 
                 <!-- Virtual Posing Coaching -->
                 <div class="service-card bodybuilding-service" data-category="bodybuilding">
-                    <div class="service-image">
+                    <div class="service-image bodybuilding-bg">
                         <div class="service-icon bodybuilding"><i class="fa-solid fa-video"></i></div>
                         <span>Service Image</span>
                     </div>
@@ -585,7 +614,7 @@
 
                 <!-- In-Person Posing -->
                 <div class="service-card bodybuilding-service" data-category="bodybuilding">
-                    <div class="service-image">
+                    <div class="service-image bodybuilding-bg">
                         <div class="service-icon bodybuilding"><i class="fa-solid fa-camera-retro"></i></div>
                         <span>Service Image</span>
                     </div>
@@ -602,26 +631,22 @@
                         </button>
                     </div>
                 </div>
-
-              
             </div>
         </div>
     </section>
 
-   <!-- CTA Section -->
-<section class="cta-section">
-    <div class="container" style="max-width: 800px;">
-        <h2 class="section-title">Not Sure Which Service is Right for You?</h2>
-        <p class="section-subtitle">Choose how you'd like to get started with your fitness journey</p>
-        
-        <div class="cta-buttons">
-            <a href="https://calendly.com/jgfitcoach" target="_blank" class="cta-button orange">Quick Schedule - Book Now</a>
-            <a href="contact.html" class="cta-button green">Share Goals First, Then Schedule</a>
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container" style="max-width: 800px;">
+            <h2 class="section-title">Ready to Get Started?</h2>
+            <p class="section-subtitle">New clients: We recommend starting with a free consultation to match you with the perfect program. Returning clients: Book your next session directly.</p>
+            
+            <div class="cta-buttons">
+                <a href="https://calendly.com/jgfitcoach" target="_blank" class="cta-button green">Schedule Free Consultation</a>
+                <a href="https://calendly.com/jgfitcoach" target="_blank" class="cta-button" style="background: transparent; border: 2px solid var(--green); color: var(--green);">Returning Client - Book Session</a>
+            </div>
         </div>
-        
-        
-    </div>
-</section>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
@@ -676,8 +701,6 @@
                 </div>
             </div>
         </div>
-        
-       
     </footer>
 
     <!-- Service Detail Modal -->
@@ -685,31 +708,33 @@
         <div class="modal">
             <button class="modal-close" onclick="closeServiceModal()">✕</button>
             
-            <div class="modal-header">
-                <h2 id="modal-title" class="modal-service-title"></h2>
-                <div id="modal-price" class="modal-service-price"></div>
-                <p id="modal-description" class="modal-service-description"></p>
-            </div>
-            
-            <div class="modal-content">
-                <div id="modal-info" class="detail-section">
-                    <h4>Service Information</h4>
-                    <div class="info-grid" id="info-grid"></div>
+            <div class="modal-scrollable">
+                <div class="modal-header">
+                    <h2 id="modal-title" class="modal-service-title"></h2>
+                    <div id="modal-price" class="modal-service-price"></div>
+                    <p id="modal-description" class="modal-service-description"></p>
                 </div>
                 
-                <div id="modal-included" class="detail-section">
-                    <h4>What's Included</h4>
-                    <ul class="features-list" id="features-list"></ul>
-                </div>
-                
-                <div id="modal-ideal" class="detail-section">
-                    <h4>Ideal For</h4>
-                    <p id="ideal-text"></p>
-                </div>
-                
-                <div class="modal-actions">
-                    <a href="contact.html" id="primary-btn" class="action-btn primary">Book This Service</a>
-                    <a href="contact.html" id="secondary-btn" class="action-btn secondary">Schedule Free Consultation</a>
+                <div class="modal-content">
+                    <div id="modal-info" class="detail-section">
+                        <h4>Service Information</h4>
+                        <div class="info-grid" id="info-grid"></div>
+                    </div>
+                    
+                    <div id="modal-included" class="detail-section">
+                        <h4>What's Included</h4>
+                        <ul class="features-list" id="features-list"></ul>
+                    </div>
+                    
+                    <div id="modal-ideal" class="detail-section">
+                        <h4>Ideal For</h4>
+                        <p id="ideal-text"></p>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <a href="https://calendly.com/jgfitcoach" target="_blank" id="primary-btn" class="action-btn primary">Schedule Free Consultation</a>
+                        <a href="https://calendly.com/jgfitcoach" target="_blank" id="secondary-btn" class="action-btn secondary">I Know What I Need - Book Now</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -737,13 +762,13 @@
             </div>
 
             <div id="quiz-result" class="hidden" style="text-align: center;">
-                <div id="result-icon" style="width: 64px; height: 64px; border-radius: 50%; margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem;"></div>
+                <div id="result-icon" style="width: 64px; height: 64px; border-radius: 50%; margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center; color: #F9FAFB; font-size: 2rem;"></div>
                 <h3 id="result-title" style="font-family: 'Oswald', sans-serif; font-size: 1.5rem; margin-bottom: 1rem;"></h3>
                 <p id="result-description" style="color: #6B7280; margin-bottom: 2rem;"></p>
                 <div style="display: flex; flex-direction: column; gap: 0.75rem;">
-                    <button id="view-services" class="cta-button" onclick="filterServicesFromQuiz()">View Recommended Services</button>
-               <button class="cta-button" onclick="window.open('https://calendly.com/jgfitcoach', '_blank')" style="background: transparent; border: 2px solid #5FEFA7; color: #5FEFA7;">Quick Schedule Consultation</button>
-             </div>
+                    <button id="view-services" class="cta-button" onclick="filterServicesFromQuiz()">View My Recommended Services</button>
+                    <button class="cta-button" onclick="window.open('https://calendly.com/jgfitcoach', '_blank')" style="background: transparent; border: 2px solid #5FEFA7; color: #5FEFA7;">Schedule Free Consultation</button>
+                </div>
             </div>
         </div>
     </div>
@@ -823,7 +848,6 @@
             const question = quizQuestions[currentQuestion];
             const selectedOption = question.options[optionIndex];
             
-            // Add points to scores
             quizScores.lifestyle += selectedOption.points.lifestyle;
             quizScores.bodybuilding += selectedOption.points.bodybuilding;
             
@@ -862,7 +886,6 @@
             closeQuiz();
             filterServices(resultType);
             
-            // Scroll to services
             document.querySelector('.services-grid').scrollIntoView({ behavior: 'smooth' });
         }
 
@@ -871,136 +894,131 @@
             document.body.style.overflow = '';
         }
 
-        // Complete serviceData object - add the personal-chef-services entry to your existing object:
+        const serviceData = {
+            'lifestyle-coaching': {
+                title: 'Online Lifestyle Fitness Coaching',
+                price: '$200/month',
+                description: 'Subscription-based online coaching program delivering personalized nutrition & fitness guidance through weekly check-ins and continuous support.',
+                category: 'lifestyle',
+                info: [
+                    { label: 'Duration', value: 'Until Cancellation (requires 30 day notice)' },
+                    { label: 'Format', value: 'Virtual Remote' }
+                ],
+                features: [
+                    'Weekly Check-ins structured to monitor progress',
+                    'Personalized Nutrition Programming with tailored meal plans',
+                    'Customized Training Plan designed for your fitness level',
+                    'Exclusive Messaging Support via email and text',
+                    'Ongoing Weekly Adjustments based on your progress'
+                ],
+                ideal: 'Any individual wanting to increase performance, improve their health, recovery and nutrition habits with the mindset of optimizing longevity and seeking detailed guidance from a Certified Coach.'
+            },
+            'in-person-training': {
+                title: 'In Person (1-on-1) Training',
+                price: '$99/hour',
+                description: 'Certified Personal Training delivered to the convenience of your home or local gym with personalized programming, expert guidance, and hands-on coaching.',
+                category: 'lifestyle',
+                info: [
+                    { label: 'Duration', value: '1 hour sessions' },
+                    { label: 'Format', value: 'In Person Only (Denver Metro Area)' }
+                ],
+                features: [
+                    'Personalized Assessment & Program Design',
+                    'Mobility and Functional Training',
+                    'Equipment-Flexible Workout Design',
+                    'On-Location Training Sessions',
+                    'Progress Monitoring & Adjustments',
+                    'NASM Certified Nutrition Coaching'
+                ],
+                ideal: 'A busy professional, parent, or athlete seeking personalized training that fits their schedule and location. Perfect for those who value expertise and appreciate the convenience of customized workouts.'
+            },
+            'personal-chef-services': {
+                title: 'Personal Chef Services',
+                price: 'Varies by order',
+                description: 'Healthy, flavorful, physique-friendly meals—chef-prepped and dropped at your doorstep.',
+                category: 'lifestyle',
+                info: [
+                    { label: 'Duration', value: 'Weekly Menu Updates, Order by Friday - Delivered Monday' },
+                    { label: 'Format', value: 'Denver Metro Area Only' },
+                    { label: 'Pricing', value: '1.25x grocery cost + $0.67/mile' }
+                ],
+                features: [
+                    'Fully customized meals based on your goals (cutting, bulking, maintenance)',
+                    'Flavor-forward recipes designed by a former Executive Chef & Certified Nutritionist', 
+                    'Flexible options: single-day prep or weekly packages',
+                    'Transparent pricing and premium ingredient sourcing',
+                    'Vacuum sealed, ready-to-heat meals delivered to your door',
+                    'Professional food safety standards and allergen awareness',
+                    'High-quality, locally sourced ingredients'
+                ],
+                ideal: 'Busy professionals, physique athletes, and health-conscious individuals who value convenience without compromising nutrition or flavor. Perfect for those who want chef-crafted, macro-aligned meals tailored to their goals and delivered fresh to their door.'
+            },
+            'bodybuilding-coaching': {
+                title: 'Online Bodybuilding Athlete Training',
+                price: '$300/month',
+                description: 'Bodybuilding and Physique Coaching including Nutrition Programming, Training + Posing for serious competitors and physique enthusiasts.',
+                category: 'bodybuilding',
+                info: [
+                    { label: 'Duration', value: '6 months minimum' },
+                    { label: 'Format', value: 'Virtual only' }
+                ],
+                features: [
+                    'Weekly check-ins with personalized video response',
+                    'Nutrition Programming based on competition goals',
+                    'Periodized Training Plan focused on progressive overload',
+                    'Video Exercise Reviews with detailed feedback',
+                    'Routine design for stage presentation',
+                    'Bloodwork Analysis for optimal performance',
+                    'Supplement Guidance and contest prep strategies',
+                    'Ongoing Progress Monitoring and support'
+                ],
+                ideal: 'Any individual pursuing physique enhancement or competition prep, committed to structured training, disciplined nutrition, and continuous improvement. Perfect for both beginners and experienced athletes.'
+            },
+            'virtual-posing': {
+                title: 'Virtual Bodybuilding Posing',
+                price: '$45/session',
+                description: 'Physique and Bodybuilding Posing including mandatory poses + routine design to perfect your stage presentation.',
+                category: 'bodybuilding',
+                info: [
+                    { label: 'Duration', value: '50 min sessions' },
+                    { label: 'Format', value: 'Virtual only' }
+                ],
+                features: [
+                    'Mandatory Pose Breakdown with detailed instruction',
+                    'Smooth, confident transitions between poses',
+                    'Routine Design & Choreography personalized to your physique',
+                    'Real-time video conferencing for detailed feedback'
+                ],
+                ideal: 'Competitive bodybuilder or classic physique athlete seeking to refine mandatory poses, transitions, and stage presence. Perfect for both novice and seasoned competitors wanting expert feedback.'
+            },
+            'in-person-posing': {
+                title: 'In-Person Bodybuilding Posing',
+                price: '$50/session',
+                description: 'In-Person Posing Coaching for Bodybuilding & Classic Physique to master your stage presentation and build confidence.',
+                category: 'bodybuilding',
+                info: [
+                    { label: 'Duration', value: '1 hour session' },
+                    { label: 'Format', value: 'In-Person (Denver Metro Area)' }
+                ],
+                features: [
+                    'Mandatory Poses breakdown for perfect form',
+                    'Smooth Transitions between poses',
+                    'Routine Design & Choreography',
+                    'Stage Presence and confidence building',
+                    'Endurance Practice for competition demands',
+                    'Video Analysis & Recording for improvement'
+                ],
+                ideal: 'Any bodybuilding or classic physique competitor, regardless of experience level. Perfect for first-timers learning fundamentals and seasoned athletes seeking to refine their stage presentation.'
+            }
+        };
 
-const serviceData = {
-    'lifestyle-coaching': {
-        title: 'Online Lifestyle Fitness Coaching',
-        price: '$200/month',
-        description: 'Subscription-based online coaching program delivering personalized nutrition & fitness guidance through weekly check-ins and continuous support.',
-        category: 'lifestyle',
-        info: [
-            { label: 'Duration', value: 'Until Cancellation (requires 30 day notice)' },
-            { label: 'Format', value: 'Virtual Remote' }
-        ],
-        features: [
-            'Weekly Check-ins structured to monitor progress',
-            'Personalized Nutrition Programming with tailored meal plans',
-            'Customized Training Plan designed for your fitness level',
-            'Exclusive Messaging Support via email and text',
-            'Ongoing Weekly Adjustments based on your progress'
-        ],
-        ideal: 'Any individual wanting to increase performance, improve their health, recovery and nutrition habits with the mindset of optimizing longevity and seeking detailed guidance from a Certified Coach.'
-    },
-    'in-person-training': {
-        title: 'In Person (1-on-1) Training',
-        price: '$99/hour',
-        description: 'Certified Personal Training delivered to the convenience of your home or local gym with personalized programming, expert guidance, and hands-on coaching.',
-        category: 'lifestyle',
-        info: [
-            { label: 'Duration', value: '1 hour sessions' },
-            { label: 'Format', value: 'In Person Only (Denver Metro Area)' }
-        ],
-        features: [
-            'Personalized Assessment & Program Design',
-            'Mobility and Functional Training',
-            'Equipment-Flexible Workout Design',
-            'On-Location Training Sessions',
-            'Progress Monitoring & Adjustments',
-            'NASM Certified Nutrition Coaching'
-        ],
-        ideal: 'A busy professional, parent, or athlete seeking personalized training that fits their schedule and location. Perfect for those who value expertise and appreciate the convenience of customized workouts.'
-    },
-    // ADD THIS NEW ENTRY FOR PERSONAL CHEF SERVICES:
-    'personal-chef-services': {
-        title: 'Personal Chef Services',
-        price: 'Varies by order',
-        description: 'Healthy, flavorful, physique-friendly meals—chef-prepped and dropped at your doorstep.',
-        category: 'lifestyle',
-        info: [
-            { label: 'Duration', value: 'Weekly Menu Updates, Order by Friday - Delivered Monday' },
-            { label: 'Format', value: 'Denver Metro Area Only' },
-            { label: 'Pricing', value: '1.25x grocery cost + $0.67/mile' }
-        ],
-        features: [
-            'Fully customized meals based on your goals (cutting, bulking, maintenance)',
-            'Flavor-forward recipes designed by a former Executive Chef & Certified Nutritionist', 
-            'Flexible options: single-day prep or weekly packages',
-            'Transparent pricing and premium ingredient sourcing',
-            'Vacuum sealed, ready-to-heat meals delivered to your door',
-            'Professional food safety standards and allergen awareness',
-            'High-quality, locally sourced ingredients'
-        ],
-        ideal: 'Busy professionals, physique athletes, and health-conscious individuals who value convenience without compromising nutrition or flavor. Perfect for those who want chef-crafted, macro-aligned meals tailored to their goals and delivered fresh to their door.'
-    },
-    'bodybuilding-coaching': {
-        title: 'Online Bodybuilding Athlete Training',
-        price: '$300/month',
-        description: 'Bodybuilding and Physique Coaching including Nutrition Programming, Training + Posing for serious competitors and physique enthusiasts.',
-        category: 'bodybuilding',
-        info: [
-            { label: 'Duration', value: '6 months minimum' },
-            { label: 'Format', value: 'Virtual only' }
-        ],
-        features: [
-            'Weekly check-ins with personalized video response',
-            'Nutrition Programming based on competition goals',
-            'Periodized Training Plan focused on progressive overload',
-            'Video Exercise Reviews with detailed feedback',
-            'Routine design for stage presentation',
-            'Bloodwork Analysis for optimal performance',
-            'Supplement Guidance and contest prep strategies',
-            'Ongoing Progress Monitoring and support'
-        ],
-        ideal: 'Any individual pursuing physique enhancement or competition prep, committed to structured training, disciplined nutrition, and continuous improvement. Perfect for both beginners and experienced athletes.'
-    },
-    'virtual-posing': {
-        title: 'Virtual Bodybuilding Posing',
-        price: '$45/session',
-        description: 'Physique and Bodybuilding Posing including mandatory poses + routine design to perfect your stage presentation.',
-        category: 'bodybuilding',
-        info: [
-            { label: 'Duration', value: '50 min sessions' },
-            { label: 'Format', value: 'Virtual only' }
-        ],
-        features: [
-            'Mandatory Pose Breakdown with detailed instruction',
-            'Smooth, confident transitions between poses',
-            'Routine Design & Choreography personalized to your physique',
-            'Real-time video conferencing for detailed feedback'
-        ],
-        ideal: 'Competitive bodybuilder or classic physique athlete seeking to refine mandatory poses, transitions, and stage presence. Perfect for both novice and seasoned competitors wanting expert feedback.'
-    },
-    'in-person-posing': {
-        title: 'In-Person Bodybuilding Posing',
-        price: '$50/session',
-        description: 'In-Person Posing Coaching for Bodybuilding & Classic Physique to master your stage presentation and build confidence.',
-        category: 'bodybuilding',
-        info: [
-            { label: 'Duration', value: '1 hour session' },
-            { label: 'Format', value: 'In-Person (Denver Metro Area)' }
-        ],
-        features: [
-            'Mandatory Poses breakdown for perfect form',
-            'Smooth Transitions between poses',
-            'Routine Design & Choreography',
-            'Stage Presence and confidence building',
-            'Endurance Practice for competition demands',
-            'Video Analysis & Recording for improvement'
-        ],
-        ideal: 'Any bodybuilding or classic physique competitor, regardless of experience level. Perfect for first-timers learning fundamentals and seasoned athletes seeking to refine their stage presentation.'
-    }
-};
-        // Filter functionality
         function filterServices(category = 'all') {
             const filterBtns = document.querySelectorAll('.filter-btn');
             const services = document.querySelectorAll('.service-card');
             
-            // Update active button
             filterBtns.forEach(btn => btn.classList.remove('active'));
             document.querySelector(`[data-filter="${category}"]`).classList.add('active');
             
-            // Show/hide services
             services.forEach(service => {
                 if (category === 'all' || service.dataset.category === category) {
                     service.style.display = 'block';
@@ -1010,24 +1028,20 @@ const serviceData = {
             });
         }
 
-        // Add filter button event listeners
         document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 filterServices(btn.dataset.filter);
             });
         });
 
-        // Modal functionality
         function openServiceModal(serviceId) {
             const service = serviceData[serviceId];
             if (!service) return;
 
-            // Populate modal content
             document.getElementById('modal-title').textContent = service.title;
             document.getElementById('modal-price').textContent = service.price;
             document.getElementById('modal-description').textContent = service.description;
 
-            // Add category class to price and buttons
             const priceEl = document.getElementById('modal-price');
             const primaryBtn = document.getElementById('primary-btn');
             const secondaryBtn = document.getElementById('secondary-btn');
@@ -1036,7 +1050,6 @@ const serviceData = {
             primaryBtn.className = `action-btn primary ${service.category}`;
             secondaryBtn.className = `action-btn secondary ${service.category}`;
 
-            // Populate info grid
             const infoGrid = document.getElementById('info-grid');
             infoGrid.innerHTML = service.info.map(item => `
                 <div class="info-item">
@@ -1045,16 +1058,13 @@ const serviceData = {
                 </div>
             `).join('');
 
-            // Populate features
             const featuresList = document.getElementById('features-list');
             featuresList.innerHTML = service.features.map(feature => `
                 <li>${feature}</li>
             `).join('');
 
-            // Populate ideal for
             document.getElementById('ideal-text').textContent = service.ideal;
 
-            // Show modal
             document.getElementById('service-modal').classList.remove('hidden');
             document.body.style.overflow = 'hidden';
         }
@@ -1064,14 +1074,12 @@ const serviceData = {
             document.body.style.overflow = '';
         }
 
-        // Close modal when clicking outside
         document.getElementById('service-modal').addEventListener('click', (e) => {
             if (e.target.classList.contains('modal-overlay')) {
                 closeServiceModal();
             }
         });
 
-        // Close modal with escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 closeServiceModal();
@@ -1079,17 +1087,32 @@ const serviceData = {
             }
         });
 
-        // Close quiz when clicking outside
         document.getElementById('quiz-modal').addEventListener('click', (e) => {
             if (e.target.classList.contains('modal-overlay')) {
                 closeQuiz();
             }
         });
 
-        // Placeholder FAQ function (to be implemented based on client preference)
-        function openFAQ() {
-            alert('FAQ section coming soon! For now, please contact us directly with any questions.');
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuToggle = document.querySelector('.mobile-menu-toggle');
+            
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                menuToggle.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            } else {
+                mobileMenu.classList.add('hidden');
+                menuToggle.classList.remove('active');
+                document.body.style.overflow = '';
+            }
         }
+
+        document.getElementById('mobile-menu').addEventListener('click', (e) => {
+            if (e.target.classList.contains('mobile-menu-overlay')) {
+                toggleMobileMenu();
+            }
+        });
     </script>
 </body>
 </html>

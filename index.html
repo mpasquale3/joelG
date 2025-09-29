@@ -10,11 +10,11 @@
     <style>
         /* Gallery section styles */
         .gallery-section {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 4rem 1rem;
-}
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 4rem 1rem;
+        }
 
         .gallery-grid {
             display: grid;
@@ -84,63 +84,184 @@
             font-family: 'Roboto', sans-serif;
         }
 
-        /* Modal for gallery lightbox */
-        .gallery-modal {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.9);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1001;
+        /* Service Modal Styles */
+        .modal-header {
+            padding: 2rem 2rem 1rem;
+            border-bottom: 1px solid #E5E7EB;
+        }
+
+        .modal-service-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .modal-service-price {
+            font-family: 'Roboto Condensed', sans-serif;
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-service-price.lifestyle {
+            color: var(--green);
+        }
+
+        .modal-service-price.bodybuilding {
+            color: var(--orange);
+        }
+
+        .modal-service-description {
+            color: var(--gray-medium);
+            line-height: 1.6;
+        }
+
+        .modal-content {
             padding: 2rem;
         }
 
-        .gallery-modal img {
-            max-width: 90%;
-            max-height: 90%;
-            object-fit: contain;
+        .detail-section {
+            margin-bottom: 2rem;
+        }
+
+        .detail-section h4 {
+            font-family: 'Roboto Condensed', sans-serif;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .detail-section p {
+            color: var(--gray-medium);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-item {
+            background: #F9FAFB;
+            padding: 1rem;
             border-radius: 0.5rem;
+            border-left: 3px solid var(--green);
         }
 
-        .gallery-modal-close {
-            position: absolute;
-            top: 2rem;
-            right: 2rem;
-            background: rgba(255,255,255,0.2);
-            border: none;
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.5rem;
-            backdrop-filter: blur(10px);
-            transition: background 0.2s;
+        .info-item strong {
+            color: var(--dark);
+            display: block;
+            margin-bottom: 0.25rem;
         }
 
-        .gallery-modal-close:hover {
-            background: rgba(255,255,255,0.3);
+        .features-list {
+            list-style: none;
+            margin-bottom: 1.5rem;
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
+        .features-list li {
+            padding: 0.4rem 0;
+            color: var(--gray-medium);
+            line-height: 1.5;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .features-list li::before {
+            content: "✓";
+            color: var(--green);
+            font-weight: bold;
+            margin-right: 0.75rem;
+            margin-top: 0.1rem;
+            flex-shrink: 0;
+        }
+
+        .modal:has(.modal-service-price.bodybuilding) .features-list li::before {
+            color: var(--orange);
+        }
+
+        .modal:has(.modal-service-price.bodybuilding) .info-item {
+            border-left: 3px solid var(--orange);
+        }
+
+        .modal-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-top: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .modal-actions {
+                flex-direction: row;
+            }
+            
             .gallery-grid {
                 grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
                 gap: 1rem;
             }
-            
-            .gallery-modal {
-                padding: 1rem;
-            }
-            
-            .gallery-modal-close {
-                top: 1rem;
-                right: 1rem;
-                width: 40px;
-                height: 40px;
-                font-size: 1.2rem;
-            }
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+            font-family: 'Roboto Condensed', sans-serif;
+            font-weight: 600;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1rem;
+        }
+
+        .action-btn.primary.lifestyle {
+            background: var(--green);
+            color: var(--dark);
+        }
+
+        .action-btn.primary.lifestyle:hover {
+            background: #4ade80;
+        }
+
+        .action-btn.primary.bodybuilding {
+            background: var(--orange);
+            color: var(--dark);
+        }
+
+        .action-btn.primary.bodybuilding:hover {
+            background: #F8F991;
+        }
+
+        .action-btn.secondary.lifestyle {
+            background: transparent;
+            color: var(--green);
+            border-color: var(--green);
+        }
+
+        .action-btn.secondary.lifestyle:hover {
+            background: var(--green);
+            color: var(--dark);
+        }
+
+        .action-btn.secondary.bodybuilding {
+            background: transparent;
+            color: var(--orange);
+            border-color: var(--orange);
+        }
+
+        .action-btn.secondary.bodybuilding:hover {
+            background: var(--orange);
+            color: var(--dark);
         }
     </style>
 </head>
@@ -156,31 +277,17 @@
                 <div class="logo-text">Build the best version of you</div>
             </div>
             
-            <!-- Desktop Navigation -->
             <nav class="nav">
                 <a href="index.html" class="nav-link">Home</a>
                 <a href="services.html" class="nav-link">Services</a>
                 <a href="contact.html" class="nav-link">Contact</a>
             </nav>
             
-            <!-- Mobile Hamburger Button -->
             <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle navigation menu">
                 <span class="hamburger-line"></span>
                 <span class="hamburger-line"></span>
                 <span class="hamburger-line"></span>
             </button>
-<!--
-            <div class="social-links">
-                <a href="https://www.instagram.com/joelg_fitness/?hl=en" target="_blank" class="social-link instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://www.threads.com/@joelg_fitness" target="_blank" class="social-link threads">
-                    @
-                </a>
-                <a href="mailto:joel@jgfitcoach.com" class="social-link email">
-                    <i class="fas fa-envelope"></i>
-                </a>
-            </div>-->
         </div>
     </header>
 
@@ -220,7 +327,6 @@
 
     <!-- Hero Section with Carousel -->
     <section class="hero">
-        <!-- Image Carousel -->
         <div class="hero-carousel">
             <div class="carousel-container">
                 <div class="carousel-slide active">
@@ -240,7 +346,6 @@
                 </div>
             </div>
             
-            <!-- Navigation Arrows -->
             <button class="carousel-nav prev" aria-label="Previous image">
                 <span>‹</span>
             </button>
@@ -248,7 +353,6 @@
                 <span>›</span>
             </button>
             
-            <!-- Dot Indicators -->
             <div class="carousel-indicators">
                 <button class="indicator active" data-slide="0" aria-label="Image 1"></button>
                 <button class="indicator" data-slide="1" aria-label="Image 2"></button>
@@ -258,7 +362,6 @@
             </div>
         </div>
         
-        <!-- Hero Content Overlay -->
         <div class="hero-content">
             <h1>Transform Your Life with <span class="highlight-green">Expert Guidance</span></h1>
             <p>Professional fitness coaching and nutrition guidance to help you build the best version of yourself</p>
@@ -266,18 +369,18 @@
         </div>
     </section>
 
- <!-- Quiz CTA -->
-<div class="section" style="padding: 2rem 1rem; text-align: center; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1);">
-    <button onclick="startQuiz()" class="quiz-cta">
-        <span style="color: #E6AA36; margin-right: 0.5rem;"><i class="fa-regular fa-star"></i></span>
-        <span style="color: #374151;">Not sure where to start? Take our quick fitness assessment</span>
-    </button>
-</div>
+    <!-- Quiz CTA -->
+    <div class="section" style="padding: 2rem 1rem; text-align: center; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1);">
+        <button onclick="startQuiz()" class="quiz-cta">
+            <span style="color: #E6AA36; margin-right: 0.5rem;"><i class="fa-regular fa-star"></i></span>
+            <span style="color: #374151;">Not sure where to start? Take our quick fitness assessment</span>
+        </button>
+    </div>
 
     <!-- About Section -->
     <section class="section about-section">
         <div class="container">
-            <h2 class="section-title">ABOUT JG FIT COACH</h2>
+            <h2 class="section-title">ABOUT JG <span class="highlight-green">FIT</span> COACH</h2>
             <div class="divider"></div>
             
             <div class="about-content">
@@ -285,14 +388,14 @@
                     <h3>Joel Gustin</h3>
                     <p>I began my journey in the kitchen at age 15, not classically trained, but shaped by mentors who taught me the art of leadership, precision, and resilience. From lead cook to executive chef, I climbed the culinary ladder through grit and adaptability—earning every promotion through performance, not pedigree.</p>
 
-<p>Growing up overweight, I discovered fitness as a transformative tool—not just for physical change, but for mental clarity and self-belief. Each goal I achieved in the gym taught me what hard work and success truly feel like. That drive carried me beyond the weight room into MMA, recreational soccer, half marathons, sprint triathlons, and ultimately, bodybuilding.</p>
+                    <p>Growing up overweight, I discovered fitness as a transformative tool—not just for physical change, but for mental clarity and self-belief. Each goal I achieved in the gym taught me what hard work and success truly feel like. That drive carried me beyond the weight room into MMA, recreational soccer, half marathons, sprint triathlons, and ultimately, bodybuilding.</p>
 
-<p>Though I’ve only recently stepped on stage, I’ve lived the bodybuilding lifestyle for years—training, cooking, mentoring, and coaching with purpose. I believe in the power of routine, the impact of discipline, and the joy of helping others unlock their potential. Whether in the kitchen or the gym, I bring passion, precision, and a relentless commitment to growth.</p>
+                    <p>Though I've only recently stepped on stage, I've lived the bodybuilding lifestyle for years—training, cooking, mentoring, and coaching with purpose. I believe in the power of routine, the impact of discipline, and the joy of helping others unlock their potential. Whether in the kitchen or the gym, I bring passion, precision, and a relentless commitment to growth.</p>
 
-                    
                     <div class="credentials">
-                        <span class="credential-tag">BodyBuilding</span>
+                        <span class="credential-tag">Bodybuilding</span>
                         <span class="credential-tag">Lifestyle</span>
+                        <span class="credential-tag">Nutrition</span>
                     </div>
 
                     <ul class="qualifications">
@@ -359,7 +462,6 @@
             <h2 class="section-title">What Clients Are <span class="highlight-green">Saying</span></h2>
             <p class="section-subtitle">Real results from real people who trusted the process</p>
             
-            <!-- Testimonials Carousel -->
             <div class="testimonials-carousel">
                 <div class="testimonials-container">
                     <div class="testimonial-slide active">
@@ -420,7 +522,7 @@
                                     <div class="testimonial-placeholder" style="display: none;">BR</div>
                                 </div>
                                 <div class="testimonial-info">
-                                    <h4>Brendon</h4>
+                                    <h4>Brendon Kornacki</h4>
                                     <p>Lifestyle Athlete</p>
                                 </div>
                             </div>
@@ -488,7 +590,6 @@
                     </div>
                 </div>
 
-                <!-- Navigation Arrows -->
                 <button class="testimonials-nav prev" aria-label="Previous testimonial">
                     <span>‹</span>
                 </button>
@@ -496,7 +597,6 @@
                     <span>›</span>
                 </button>
 
-                <!-- Dot Indicators -->
                 <div class="testimonials-indicators">
                     <button class="testimonial-indicator active" data-slide="0" aria-label="Testimonial 1"></button>
                     <button class="testimonial-indicator" data-slide="1" aria-label="Testimonial 2"></button>
@@ -517,7 +617,7 @@
                     <div class="stat-label">Happy Clients</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-number">250+</div>
+                    <div class="stat-number">300+</div>
                     <div class="stat-label">Pounds Lost</div>
                 </div>
                 <div class="stat">
@@ -539,84 +639,90 @@
             <p class="section-subtitle">See the transformation and dedication that drives our success</p>
             
             <div class="gallery-grid">
-                <!-- Gallery Item 1 -->
-                <div class="gallery-item" onclick="openGalleryModal('images/gallery/training-session.jpg', 'Personal Training Session')">
-                    <img src="images/gallery/training-session.jpg" alt="Personal Training Session" onerror="this.parentElement.innerHTML='<div class=gallery-placeholder>Training Session Photo</div>'">
+                <!-- Gallery Item 1 - Online Lifestyle Coaching -->
+                <div class="gallery-item" onclick="openServiceModal('lifestyle-coaching')">
+                    <img src="images/galleryTraining.jpg" alt="Online Lifestyle Coaching" onerror="this.parentElement.innerHTML='<div class=gallery-placeholder>Training Session Photo</div>'">
                     <div class="gallery-overlay">
-                        <div class="gallery-caption">Personal Training Session</div>
+                        <div class="gallery-caption">Online Lifestyle Coaching</div>
                     </div>
                 </div>
 
-                <!-- Gallery Item 2 -->
-                <div class="gallery-item" onclick="openGalleryModal('images/gallery/competition-pose.jpg', 'Competition Posing')">
-                    <img src="images/gallery/competition-pose.jpg" alt="Competition Posing" onerror="this.parentElement.innerHTML='<div class=gallery-placeholder>Competition Pose</div>'">
+                <!-- Gallery Item 2 - In-Person Training -->
+                <div class="gallery-item" onclick="openServiceModal('in-person-training')">
+                    <img src="images/galleryGear.jpg" alt="In-Person Training" onerror="this.parentElement.innerHTML='<div class=gallery-placeholder>Group Training Session</div>'">
                     <div class="gallery-overlay">
-                        <div class="gallery-caption">Competition Posing</div>
+                        <div class="gallery-caption">In-Person Training</div>
                     </div>
                 </div>
 
-                <!-- Gallery Item 3 -->
-                <div class="gallery-item" onclick="openGalleryModal('images/gallery/client-transformation.jpg', 'Client Transformation')">
-                    <img src="images/gallery/client-transformation.jpg" alt="Client Transformation" onerror="this.parentElement.innerHTML='<div class=gallery-placeholder>Client Success Story</div>'">
+                <!-- Gallery Item 3 - Bodybuilding Coaching -->
+                <div class="gallery-item" onclick="openServiceModal('bodybuilding-coaching')">
+                    <img src="images/galleryChampAwards.jpg" alt="Bodybuilding Coaching" onerror="this.parentElement.innerHTML='<div class=gallery-placeholder>Competition Pose</div>'">
                     <div class="gallery-overlay">
-                        <div class="gallery-caption">Client Transformation</div>
+                        <div class="gallery-caption">Bodybuilding Coaching</div>
                     </div>
                 </div>
 
-                <!-- Gallery Item 4 -->
-                <div class="gallery-item" onclick="openGalleryModal('images/gallery/nutrition-coaching.jpg', 'Nutrition Consultation')">
-                    <img src="images/gallery/nutrition-coaching.jpg" alt="Nutrition Consultation" onerror="this.parentElement.innerHTML='<div class=gallery-placeholder>Nutrition Consultation</div>'">
+                <!-- Gallery Item 4 - Lifestyle Transformation -->
+                <div class="gallery-item" onclick="openServiceModal('lifestyle-coaching')">
+                    <img src="images/gallerySuccessStory.JPG" alt="Client Transformation" onerror="this.parentElement.innerHTML='<div class=gallery-placeholder>Client Success Story</div>'">
                     <div class="gallery-overlay">
-                        <div class="gallery-caption">Nutrition Consultation</div>
+                        <div class="gallery-caption">Lifestyle Transformation</div>
                     </div>
                 </div>
 
-                <!-- Gallery Item 5 -->
-                <div class="gallery-item" onclick="openGalleryModal('images/gallery/group-training.jpg', 'Group Training')">
-                    <img src="images/gallery/group-training.jpg" alt="Group Training" onerror="this.parentElement.innerHTML='<div class=gallery-placeholder>Group Training Session</div>'">
+                <!-- Gallery Item 5 - Personal Chef -->
+                <div class="gallery-item" onclick="openServiceModal('personal-chef-services')">
+                    <img src="images/galleryMealPrep.jpg" alt="Personal Chef Services" onerror="this.parentElement.innerHTML='<div class=gallery-placeholder>Nutrition Consultation</div>'">
                     <div class="gallery-overlay">
-                        <div class="gallery-caption">Group Training</div>
+                        <div class="gallery-caption">Personal Chef Services</div>
                     </div>
                 </div>
 
-                <!-- Gallery Item 6 -->
-                <div class="gallery-item" onclick="openGalleryModal('images/gallery/competition-backstage.jpg', 'Backstage Support')">
-                    <img src="images/gallery/competition-backstage.jpg" alt="Backstage Support" onerror="this.parentElement.innerHTML='<div class=gallery-placeholder>Backstage Support</div>'">
+                <!-- Gallery Item 6 - Posing Coaching -->
+                <div class="gallery-item" onclick="openServiceModal('in-person-posing')">
+                    <img src="images/gallerySupport.jpg" alt="Posing Coaching" onerror="this.parentElement.innerHTML='<div class=gallery-placeholder>Backstage Support</div>'">
                     <div class="gallery-overlay">
-                        <div class="gallery-caption">Backstage Support</div>
+                        <div class="gallery-caption">Posing Coaching</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Quick Actions -->
-<section class="section cta-section">
-    <div class="container" style="max-width: 800px;">
-        <h2 class="section-title">Ready to Get Started?</h2>
+<!-- Quick Actions -->
+<section class="cta-section">
+    <div class="container" style="max-width: 900px;">
+        <h2 class="section-title">Ready to Get <span class="highlight-green">Started?</span></h2>
         
         <div class="cta-cards">
-            <div class="cta-card">
-                <div class="cta-icon"><i class="fa-solid fa-calendar"></i></div>
-                <h3>Schedule Your Consult Today</h3>
-                <p>Book your free consultation directly on my calendar. Choose a time that works best for you.</p>
-                <a href="https://calendly.com/jgfitcoach" target="_blank" class="cta-button orange">Book Now</a>
-            </div>
+    <div class="cta-card">
+        <div class="cta-icon" style="background: linear-gradient(135deg, var(--green), #4ade80);">
+            <i class="fa-solid fa-calendar"></i>
+        </div>
+        <div class="cta-card-content">
+            <h3>New to JG Fit Coach?</h3>
+            <p>Start with a free consultation to find your perfect program. We'll discuss your goals and match you with the right service.</p>
+            <a href="https://calendly.com/jgfitcoach" target="_blank" class="cta-button green">Schedule Free Consultation</a>
+        </div>
+    </div>
 
-            <div class="cta-card">
-                <div class="cta-icon"><i class="fa-solid fa-clipboard-list"></i></div>
-                <h3>Tell Me About Your Goals</h3>
-                <p>Share your fitness goals first, then schedule your consultation for a more personalized experience.</p>
-                <a href="contact.html" class="cta-button green">Share Goals & Schedule</a>
-            </div>
+    <div class="cta-card">
+        <div class="cta-icon" style="background: linear-gradient(135deg, var(--orange), #F8F991);">
+            <i class="fa-solid fa-clipboard-list"></i>
+        </div>
+        <div class="cta-card-content">
+            <h3>Already Know What You Need?</h3>
+            <p>Returning client or ready to dive in? Book your session directly and let's get started.</p>
+            <a href="https://calendly.com/jgfitcoach" target="_blank" class="cta-button orange-outline">Book Session Now</a>
+        </div>
+    </div>
+</div>
         </div>
     </div>
 </section>
-
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
-            <!-- Column 1: Logo and Slogan -->
             <div class="footer-section">
                 <div style="display: flex; align-items: center; margin-bottom: 1rem;">
                     <div class="footer-logo">
@@ -629,7 +735,6 @@
                 </div>
             </div>
             
-            <!-- Column 2: Services -->
             <div class="footer-section">
                 <h4>Services</h4>
                 <ul class="footer-links">
@@ -640,7 +745,6 @@
                 </ul>
             </div>
             
-            <!-- Column 3: Quick Links -->
             <div class="footer-section">
                 <h4>Quick Links</h4>
                 <ul class="footer-links">
@@ -650,7 +754,6 @@
                 </ul>
             </div>
             
-            <!-- Column 4: Connect -->
             <div class="footer-section">
                 <h4>Connect</h4>
                 <div class="social-links">
@@ -666,8 +769,6 @@
                 </div>
             </div>
         </div>
-        
-        
     </footer>
 
     <!-- Quiz Modal -->
@@ -702,16 +803,49 @@
                 <p id="result-description" style="color: #6B7280; margin-bottom: 2rem;"></p>
                 <div style="display: flex; flex-direction: column; gap: 0.75rem;">
                     <button id="view-services" class="cta-button" onclick="window.location.href='services.html'">View Recommended Services</button>
-<button class="cta-button" onclick="window.location.href='https://calendly.com/jgfitcoach'" style="background: transparent; border: 2px solid #5FEFA7; color: #5FEFA7;">Quick Schedule Consultation</button>                </div>
+                    <button class="cta-button" onclick="window.location.href='https://calendly.com/jgfitcoach'" style="background: transparent; border: 2px solid #5FEFA7; color: #5FEFA7;">Quick Schedule Consultation</button>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Gallery Modal -->
-    <div id="gallery-modal" class="gallery-modal hidden">
-        <button class="gallery-modal-close" onclick="closeGalleryModal()">✕</button>
-        <img id="gallery-modal-img" src="" alt="">
+    <!-- Service Detail Modal -->
+<div id="service-modal" class="modal-overlay hidden">
+    <div class="modal">
+        <button class="modal-close" onclick="closeServiceModal()">✕</button>
+        
+        <div class="modal-scrollable">
+            <div class="modal-header">
+                <h2 id="modal-title" class="modal-service-title"></h2>
+                <div id="modal-price" class="modal-service-price"></div>
+                <p id="modal-description" class="modal-service-description"></p>
+            </div>
+            
+            <div class="modal-content">
+                <div id="modal-info" class="detail-section">
+                    <h4>Service Information</h4>
+                    <div class="info-grid" id="info-grid"></div>
+                </div>
+                
+                <div id="modal-included" class="detail-section">
+                    <h4>What's Included</h4>
+                    <ul class="features-list" id="features-list"></ul>
+                </div>
+                
+                <div id="modal-ideal" class="detail-section">
+                    <h4>Ideal For</h4>
+                    <p id="ideal-text"></p>
+                </div>
+                
+                <div class="modal-actions">
+                    <a href="contact.html" id="primary-btn" class="action-btn primary">Book This Service</a>
+                    <a href="contact.html" id="secondary-btn" class="action-btn secondary">Schedule Free Consultation</a>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
+    
 
     <script src="js/main.js"></script>
     <script src="js/quiz.js"></script>
@@ -722,67 +856,181 @@
             const menuToggle = document.querySelector('.mobile-menu-toggle');
             
             if (mobileMenu.classList.contains('hidden')) {
-                // Open menu
                 mobileMenu.classList.remove('hidden');
                 menuToggle.classList.add('active');
-                document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
+                document.body.style.overflow = 'hidden';
             } else {
-                // Close menu
                 mobileMenu.classList.add('hidden');
                 menuToggle.classList.remove('active');
-                document.body.style.overflow = ''; // Restore scrolling
+                document.body.style.overflow = '';
             }
         }
 
-        // Close mobile menu when clicking overlay
         document.getElementById('mobile-menu').addEventListener('click', (e) => {
             if (e.target.classList.contains('mobile-menu-overlay')) {
                 toggleMobileMenu();
             }
         });
 
-        // Close mobile menu with escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 const mobileMenu = document.getElementById('mobile-menu');
                 if (!mobileMenu.classList.contains('hidden')) {
                     toggleMobileMenu();
                 }
+                closeServiceModal();
             }
         });
 
-        // Gallery modal functionality
-        function openGalleryModal(imageSrc, imageAlt) {
-            const modal = document.getElementById('gallery-modal');
-            const modalImg = document.getElementById('gallery-modal-img');
+        // Service data
+        const serviceData = {
+            'lifestyle-coaching': {
+                title: 'Online Lifestyle Fitness Coaching',
+                price: '$200/month',
+                description: 'Subscription-based online coaching program delivering personalized nutrition & fitness guidance through weekly check-ins and continuous support.',
+                category: 'lifestyle',
+                info: [
+                    { label: 'Duration', value: 'Until Cancellation (requires 30 day notice)' },
+                    { label: 'Format', value: 'Virtual Remote' }
+                ],
+                features: [
+                    'Weekly Check-ins structured to monitor progress',
+                    'Personalized Nutrition Programming with tailored meal plans',
+                    'Customized Training Plan designed for your fitness level',
+                    'Exclusive Messaging Support via email and text',
+                    'Ongoing Weekly Adjustments based on your progress'
+                ],
+                ideal: 'Any individual wanting to increase performance, improve their health, recovery and nutrition habits with the mindset of optimizing longevity and seeking detailed guidance from a Certified Coach.'
+            },
+            'in-person-training': {
+                title: 'In Person (1-on-1) Training',
+                price: '$99/hour',
+                description: 'Certified Personal Training delivered to the convenience of your home or local gym with personalized programming, expert guidance, and hands-on coaching.',
+                category: 'lifestyle',
+                info: [
+                    { label: 'Duration', value: '1 hour sessions' },
+                    { label: 'Format', value: 'In Person Only (Denver Metro Area)' }
+                ],
+                features: [
+                    'Personalized Assessment & Program Design',
+                    'Mobility and Functional Training',
+                    'Equipment-Flexible Workout Design',
+                    'On-Location Training Sessions',
+                    'Progress Monitoring & Adjustments',
+                    'NASM Certified Nutrition Coaching'
+                ],
+                ideal: 'A busy professional, parent, or athlete seeking personalized training that fits their schedule and location. Perfect for those who value expertise and appreciate the convenience of customized workouts.'
+            },
+            'personal-chef-services': {
+                title: 'Personal Chef Services',
+                price: 'Varies by order',
+                description: 'Healthy, flavorful, physique-friendly meals—chef-prepped and dropped at your doorstep.',
+                category: 'lifestyle',
+                info: [
+                    { label: 'Duration', value: 'Weekly Menu Updates, Order by Friday - Delivered Monday' },
+                    { label: 'Format', value: 'Denver Metro Area Only' },
+                    { label: 'Pricing', value: '1.25x grocery cost + $0.67/mile' }
+                ],
+                features: [
+                    'Fully customized meals based on your goals (cutting, bulking, maintenance)',
+                    'Flavor-forward recipes designed by a former Executive Chef & Certified Nutritionist', 
+                    'Flexible options: single-day prep or weekly packages',
+                    'Transparent pricing and premium ingredient sourcing',
+                    'Vacuum sealed, ready-to-heat meals delivered to your door',
+                    'Professional food safety standards and allergen awareness',
+                    'High-quality, locally sourced ingredients'
+                ],
+                ideal: 'Busy professionals, physique athletes, and health-conscious individuals who value convenience without compromising nutrition or flavor. Perfect for those who want chef-crafted, macro-aligned meals tailored to their goals and delivered fresh to their door.'
+            },
+            'bodybuilding-coaching': {
+                title: 'Online Bodybuilding Athlete Training',
+                price: '$300/month',
+                description: 'Bodybuilding and Physique Coaching including Nutrition Programming, Training + Posing for serious competitors and physique enthusiasts.',
+                category: 'bodybuilding',
+                info: [
+                    { label: 'Duration', value: '6 months minimum' },
+                    { label: 'Format', value: 'Virtual only' }
+                ],
+                features: [
+                    'Weekly check-ins with personalized video response',
+                    'Nutrition Programming based on competition goals',
+                    'Periodized Training Plan focused on progressive overload',
+                    'Video Exercise Reviews with detailed feedback',
+                    'Routine design for stage presentation',
+                    'Bloodwork Analysis for optimal performance',
+                    'Supplement Guidance and contest prep strategies',
+                    'Ongoing Progress Monitoring and support'
+                ],
+                ideal: 'Any individual pursuing physique enhancement or competition prep, committed to structured training, disciplined nutrition, and continuous improvement. Perfect for both beginners and experienced athletes.'
+            },
+            'in-person-posing': {
+                title: 'In-Person Bodybuilding Posing',
+                price: '$50/session',
+                description: 'In-Person Posing Coaching for Bodybuilding & Classic Physique to master your stage presentation and build confidence.',
+                category: 'bodybuilding',
+                info: [
+                    { label: 'Duration', value: '1 hour session' },
+                    { label: 'Format', value: 'In-Person (Denver Metro Area)' }
+                ],
+                features: [
+                    'Mandatory Poses breakdown for perfect form',
+                    'Smooth Transitions between poses',
+                    'Routine Design & Choreography',
+                    'Stage Presence and confidence building',
+                    'Endurance Practice for competition demands',
+                    'Video Analysis & Recording for improvement'
+                ],
+                ideal: 'Any bodybuilding or classic physique competitor, regardless of experience level. Perfect for first-timers learning fundamentals and seasoned athletes seeking to refine their stage presentation.'
+            }
+        };
+
+        // Service modal functionality
+        function openServiceModal(serviceId) {
+            const service = serviceData[serviceId];
+            if (!service) return;
+
+            document.getElementById('modal-title').textContent = service.title;
+            document.getElementById('modal-price').textContent = service.price;
+            document.getElementById('modal-description').textContent = service.description;
+
+            const priceEl = document.getElementById('modal-price');
+            const primaryBtn = document.getElementById('primary-btn');
+            const secondaryBtn = document.getElementById('secondary-btn');
             
-            modalImg.src = imageSrc;
-            modalImg.alt = imageAlt;
-            modal.classList.remove('hidden');
+            priceEl.className = `modal-service-price ${service.category}`;
+            primaryBtn.className = `action-btn primary ${service.category}`;
+            secondaryBtn.className = `action-btn secondary ${service.category}`;
+
+            const infoGrid = document.getElementById('info-grid');
+            infoGrid.innerHTML = service.info.map(item => `
+                <div class="info-item">
+                    <strong>${item.label}:</strong>
+                    ${item.value}
+                </div>
+            `).join('');
+
+            const featuresList = document.getElementById('features-list');
+            featuresList.innerHTML = service.features.map(feature => `
+                <li>${feature}</li>
+            `).join('');
+
+            document.getElementById('ideal-text').textContent = service.ideal;
+
+            document.getElementById('service-modal').classList.remove('hidden');
             document.body.style.overflow = 'hidden';
         }
 
-        function closeGalleryModal() {
-            const modal = document.getElementById('gallery-modal');
-            modal.classList.add('hidden');
+        function closeServiceModal() {
+            document.getElementById('service-modal').classList.add('hidden');
             document.body.style.overflow = '';
         }
 
-        // Close gallery modal when clicking outside the image
-        document.getElementById('gallery-modal').addEventListener('click', (e) => {
-            if (e.target.classList.contains('gallery-modal')) {
-                closeGalleryModal();
+        document.getElementById('service-modal').addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal-overlay')) {
+                closeServiceModal();
             }
         });
 
-        // Close gallery modal with escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeGalleryModal();
-            }
-        });
-
-        // Placeholder FAQ function
         function openFAQ() {
             alert('FAQ section coming soon! For now, please contact us directly with any questions.');
         }
