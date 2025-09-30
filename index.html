@@ -8,6 +8,288 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Clean Hero Section Styles */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            background: var(--dark);
+            overflow: hidden;
+        }
+
+        .hero-background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .hero-background img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.5);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.6) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 8rem 2rem 4rem;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            width: 100%;
+        }
+
+        @media (min-width: 968px) {
+            .hero-grid {
+                grid-template-columns: 1fr 1fr;
+                align-items: center;
+            }
+        }
+
+        /* Left Side - Brand & Message */
+        .hero-left {
+            color: white;
+        }
+
+        
+
+        .hero-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight-green {
+            color: var(--green);
+            text-shadow: 0 0 20px rgba(95, 239, 167, 0.5);
+        }
+
+        .hero-subtitle {
+            font-family: 'Roboto Condensed', sans-serif;
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+            color: #E5E7EB;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            padding: 1.2rem 2.5rem;
+            background: var(--green);
+            color: var(--dark);
+            text-decoration: none;
+            font-family: 'Roboto Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(95, 239, 167, 0.3);
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(95, 239, 167, 0.5);
+            background: #4ade80;
+        }
+
+        /* Right Side - Value Cards */
+        .hero-cards {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 640px) {
+            .hero-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+.value-card {
+    position: relative;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    backdrop-filter: blur(10px);
+    border-radius: 1.5rem;
+    padding: 3rem 2rem;
+    text-align: center;
+    box-shadow: 
+        0 10px 30px rgba(0,0,0,0.2),
+        0 1px 3px rgba(0,0,0,0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-left: 6px solid transparent;
+    overflow: hidden;
+}
+
+/* Subtle texture overlay */
+.value-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 20% 50%, rgba(0,0,0,0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(0,0,0,0.02) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.value-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 
+        0 20px 40px rgba(0,0,0,0.3),
+        0 5px 10px rgba(0,0,0,0.15);
+}
+
+.value-card.green {
+    border-left-color: var(--green);
+}
+
+.value-card.orange {
+    border-left-color: var(--orange);
+}
+
+
+
+.value-card.green:hover {
+    background: linear-gradient(135deg, #f0fdf9 0%, #f8f9fa 100%);
+    border-left-width: 8px;
+}
+
+.value-card.orange:hover {
+    background: linear-gradient(135deg, #fffbf0 0%, #f8f9fa 100%);
+    border-left-width: 8px;
+}
+
+
+.card-icon {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 1.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    color: white;
+    transition: all 0.4s ease;
+    position: relative;
+}
+
+/* Glowing effects */
+.value-card.green .card-icon {
+    background: var(--green);
+    color: var(--dark);
+    box-shadow: 
+        0 8px 20px rgba(95, 239, 167, 0.4),
+        0 0 30px rgba(95, 239, 167, 0.2),
+        inset 0 -2px 10px rgba(255,255,255,0.3);
+}
+
+.value-card.orange .card-icon {
+    background: var(--orange);
+    color: var(--dark);
+    box-shadow: 
+        0 8px 20px rgba(230, 170, 54, 0.4),
+        0 0 30px rgba(230, 170, 54, 0.2),
+        inset 0 -2px 10px rgba(255,255,255,0.3);
+}
+
+
+
+.value-card:hover .card-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.value-card.green:hover .card-icon {
+    box-shadow: 
+        0 12px 30px rgba(95, 239, 167, 0.6),
+        0 0 50px rgba(95, 239, 167, 0.3),
+        inset 0 -2px 10px rgba(255,255,255,0.3);
+}
+
+.value-card.orange:hover .card-icon {
+    box-shadow: 
+        0 12px 30px rgba(230, 170, 54, 0.6),
+        0 0 50px rgba(230, 170, 54, 0.3),
+        inset 0 -2px 10px rgba(255,255,255,0.3);
+}
+
+
+
+        .value-card.green .card-icon {
+            background: var(--green);
+            color: var(--dark);
+        }
+
+        .value-card.orange .card-icon {
+            background: var(--orange);
+            color: var(--dark);
+        }
+
+       
+
+        .card-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .card-subtitle {
+            font-family: 'Roboto Condensed', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #6B7280;
+            margin-bottom: 0.75rem;
+        }
+
+        .card-description {
+            font-size: 0.9rem;
+            color: #6B7280;
+            line-height: 1.5;
+        }
+
+        /* Single column on mobile */
+        @media (max-width: 639px) {
+            .hero-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 967px) {
+            .hero-content {
+                padding: 6rem 1.5rem 3rem;
+            }
+
+            .hero-logo {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
         /* Gallery section styles */
         .gallery-section {
             background: rgba(255, 255, 255, 0.05);
@@ -274,7 +556,6 @@
                     <img src="images/jgLogoV1-01.svg" alt="JG Fit Coach Logo">
                     <span class="logo-fallback">JG</span>
                 </div>
-                <div class="logo-text">Build the best version of you</div>
             </div>
             
             <nav class="nav">
@@ -325,47 +606,70 @@
         </div>
     </div>
 
-    <!-- Hero Section with Carousel -->
+    <!-- Clean Hero Section -->
     <section class="hero">
-        <div class="hero-carousel">
-            <div class="carousel-container">
-                <div class="carousel-slide active">
-                    <img src="images/hero1.png" alt="Personal Training Session" />
-                </div>
-                <div class="carousel-slide">
-                    <img src="images/hero2.png" alt="Nutrition Coaching" />
-                </div>
-                <div class="carousel-slide">
-                    <img src="images/hero3.png" alt="Bodybuilding Competition" />
-                </div>
-                <div class="carousel-slide">
-                    <img src="images/hero4.png" alt="Fitness Success Story" />
-                </div>
-                <div class="carousel-slide">
-                    <img src="images/hero5.png" alt="Lifestyle Transformation" />
-                </div>
-            </div>
-            
-            <button class="carousel-nav prev" aria-label="Previous image">
-                <span>‹</span>
-            </button>
-            <button class="carousel-nav next" aria-label="Next image">
-                <span>›</span>
-            </button>
-            
-            <div class="carousel-indicators">
-                <button class="indicator active" data-slide="0" aria-label="Image 1"></button>
-                <button class="indicator" data-slide="1" aria-label="Image 2"></button>
-                <button class="indicator" data-slide="2" aria-label="Image 3"></button>
-                <button class="indicator" data-slide="3" aria-label="Image 4"></button>
-                <button class="indicator" data-slide="4" aria-label="Image 5"></button>
-            </div>
+        <div class="hero-background">
+            <img src="images/hero/hero2.jpg" alt="JG Fit Coach Training">
         </div>
-        
+        <div class="hero-overlay"></div>
+
         <div class="hero-content">
-            <h1>Transform Your Life with <span class="highlight-green">Expert Guidance</span></h1>
-            <p>Professional fitness coaching and nutrition guidance to help you build the best version of yourself</p>
-            <a href="contact.html" class="cta-button">Get Started Today</a>
+            <div class="hero-grid">
+                <!-- Left Side - Brand & Message -->
+                <div class="hero-left">
+                    
+                    
+                    <h1 class="hero-title">
+                        Build the Best<br>
+                        <span class="highlight-green">Version of You</span>
+                    </h1>
+                    
+                    <p class="hero-subtitle">
+                        Professional fitness coaching and nutrition guidance from a NASM Certified trainer with real competition experience.
+                    </p>
+                    
+                    <a href="contact.html" class="hero-cta">Get Started Today</a>
+                </div>
+
+                <!-- Right Side - Value Cards -->
+                <div class="hero-cards">
+                    <div class="value-card green">
+                        <div class="card-icon">
+                            <i class="fa-solid fa-dumbbell"></i>
+                        </div>
+                        <h3 class="card-title">Strength</h3>
+                        <p class="card-subtitle">Build Power & Muscle</p>
+                        <p class="card-description">Transform your physique with proven training methods</p>
+                    </div>
+
+                    <div class="value-card orange">
+                        <div class="card-icon">
+                            <i class="fa-solid fa-brain"></i>
+                        </div>
+                        <h3 class="card-title">Focus</h3>
+                        <p class="card-subtitle">Mental Discipline</p>
+                        <p class="card-description">Develop the mindset of a champion</p>
+                    </div>
+
+                    <div class="value-card orange">
+                        <div class="card-icon">
+                            <i class="fa-solid fa-utensils"></i>
+                        </div>
+                        <h3 class="card-title">Nutrition</h3>
+                        <p class="card-subtitle">Fuel Your Success</p>
+                        <p class="card-description">Expert guidance from a certified nutritionist</p>
+                    </div>
+
+                    <div class="value-card green">
+                        <div class="card-icon">
+                            <i class="fa-solid fa-trophy"></i>
+                        </div>
+                        <h3 class="card-title">Results</h3>
+                        <p class="card-subtitle">Proven Success</p>
+                        <p class="card-description">Real transformation from dedicated training</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -639,7 +943,6 @@
             <p class="section-subtitle">See the transformation and dedication that drives our success</p>
             
             <div class="gallery-grid">
-                <!-- Gallery Item 1 - Online Lifestyle Coaching -->
                 <div class="gallery-item" onclick="openServiceModal('lifestyle-coaching')">
                     <img src="images/galleryTraining.jpg" alt="Online Lifestyle Coaching" onerror="this.parentElement.innerHTML='<div class=gallery-placeholder>Training Session Photo</div>'">
                     <div class="gallery-overlay">
@@ -647,7 +950,6 @@
                     </div>
                 </div>
 
-                <!-- Gallery Item 2 - In-Person Training -->
                 <div class="gallery-item" onclick="openServiceModal('in-person-training')">
                     <img src="images/galleryGear.jpg" alt="In-Person Training" onerror="this.parentElement.innerHTML='<div class=gallery-placeholder>Group Training Session</div>'">
                     <div class="gallery-overlay">
@@ -655,7 +957,6 @@
                     </div>
                 </div>
 
-                <!-- Gallery Item 3 - Bodybuilding Coaching -->
                 <div class="gallery-item" onclick="openServiceModal('bodybuilding-coaching')">
                     <img src="images/galleryChampAwards.jpg" alt="Bodybuilding Coaching" onerror="this.parentElement.innerHTML='<div class=gallery-placeholder>Competition Pose</div>'">
                     <div class="gallery-overlay">
@@ -663,7 +964,6 @@
                     </div>
                 </div>
 
-                <!-- Gallery Item 4 - Lifestyle Transformation -->
                 <div class="gallery-item" onclick="openServiceModal('lifestyle-coaching')">
                     <img src="images/gallerySuccessStory.JPG" alt="Client Transformation" onerror="this.parentElement.innerHTML='<div class=gallery-placeholder>Client Success Story</div>'">
                     <div class="gallery-overlay">
@@ -671,7 +971,6 @@
                     </div>
                 </div>
 
-                <!-- Gallery Item 5 - Personal Chef -->
                 <div class="gallery-item" onclick="openServiceModal('personal-chef-services')">
                     <img src="images/galleryMealPrep.jpg" alt="Personal Chef Services" onerror="this.parentElement.innerHTML='<div class=gallery-placeholder>Nutrition Consultation</div>'">
                     <div class="gallery-overlay">
@@ -679,7 +978,6 @@
                     </div>
                 </div>
 
-                <!-- Gallery Item 6 - Posing Coaching -->
                 <div class="gallery-item" onclick="openServiceModal('in-person-posing')">
                     <img src="images/gallerySupport.jpg" alt="Posing Coaching" onerror="this.parentElement.innerHTML='<div class=gallery-placeholder>Backstage Support</div>'">
                     <div class="gallery-overlay">
@@ -689,37 +987,38 @@
             </div>
         </div>
     </section>
-<!-- Quick Actions -->
-<section class="cta-section">
-    <div class="container" style="max-width: 900px;">
-        <h2 class="section-title">Ready to Get <span class="highlight-green">Started?</span></h2>
-        
-        <div class="cta-cards">
-    <div class="cta-card">
-        <div class="cta-icon" style="background: linear-gradient(135deg, var(--green), #4ade80);">
-            <i class="fa-solid fa-calendar"></i>
-        </div>
-        <div class="cta-card-content">
-            <h3>New to JG Fit Coach?</h3>
-            <p>Start with a free consultation to find your perfect program. We'll discuss your goals and match you with the right service.</p>
-            <a href="https://calendly.com/jgfitcoach" target="_blank" class="cta-button green">Schedule Free Consultation</a>
-        </div>
-    </div>
 
-    <div class="cta-card">
-        <div class="cta-icon" style="background: linear-gradient(135deg, var(--orange), #F8F991);">
-            <i class="fa-solid fa-clipboard-list"></i>
+    <!-- Quick Actions -->
+    <section class="cta-section">
+        <div class="container" style="max-width: 900px;">
+            <h2 class="section-title">Ready to Get <span class="highlight-green">Started?</span></h2>
+            
+            <div class="cta-cards">
+                <div class="cta-card">
+                    <div class="cta-icon" style="background: linear-gradient(135deg, var(--green), #4ade80);">
+                        <i class="fa-solid fa-calendar"></i>
+                    </div>
+                    <div class="cta-card-content">
+                        <h3>New to JG Fit Coach?</h3>
+                        <p>Start with a free consultation to find your perfect program. We'll discuss your goals and match you with the right service.</p>
+                        <a href="https://calendly.com/jgfitcoach" target="_blank" class="cta-button green">Schedule Free Consultation</a>
+                    </div>
+                </div>
+
+                <div class="cta-card">
+                    <div class="cta-icon" style="background: linear-gradient(135deg, var(--orange), #F8F991);">
+                        <i class="fa-solid fa-clipboard-list"></i>
+                    </div>
+                    <div class="cta-card-content">
+                        <h3>Already Know What You Need?</h3>
+                        <p>Returning client or ready to dive in? Book your session directly and let's get started.</p>
+                        <a href="https://calendly.com/jgfitcoach" target="_blank" class="cta-button orange-outline">Book Session Now</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="cta-card-content">
-            <h3>Already Know What You Need?</h3>
-            <p>Returning client or ready to dive in? Book your session directly and let's get started.</p>
-            <a href="https://calendly.com/jgfitcoach" target="_blank" class="cta-button orange-outline">Book Session Now</a>
-        </div>
-    </div>
-</div>
-        </div>
-    </div>
-</section>
+    </section>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
@@ -810,42 +1109,41 @@
     </div>
 
     <!-- Service Detail Modal -->
-<div id="service-modal" class="modal-overlay hidden">
-    <div class="modal">
-        <button class="modal-close" onclick="closeServiceModal()">✕</button>
-        
-        <div class="modal-scrollable">
-            <div class="modal-header">
-                <h2 id="modal-title" class="modal-service-title"></h2>
-                <div id="modal-price" class="modal-service-price"></div>
-                <p id="modal-description" class="modal-service-description"></p>
-            </div>
+    <div id="service-modal" class="modal-overlay hidden">
+        <div class="modal">
+            <button class="modal-close" onclick="closeServiceModal()">✕</button>
             
-            <div class="modal-content">
-                <div id="modal-info" class="detail-section">
-                    <h4>Service Information</h4>
-                    <div class="info-grid" id="info-grid"></div>
+            <div class="modal-scrollable">
+                <div class="modal-header">
+                    <h2 id="modal-title" class="modal-service-title"></h2>
+                    <div id="modal-price" class="modal-service-price"></div>
+                    <p id="modal-description" class="modal-service-description"></p>
                 </div>
                 
-                <div id="modal-included" class="detail-section">
-                    <h4>What's Included</h4>
-                    <ul class="features-list" id="features-list"></ul>
-                </div>
-                
-                <div id="modal-ideal" class="detail-section">
-                    <h4>Ideal For</h4>
-                    <p id="ideal-text"></p>
-                </div>
-                
-                <div class="modal-actions">
-                    <a href="contact.html" id="primary-btn" class="action-btn primary">Book This Service</a>
-                    <a href="contact.html" id="secondary-btn" class="action-btn secondary">Schedule Free Consultation</a>
+                <div class="modal-content">
+                    <div id="modal-info" class="detail-section">
+                        <h4>Service Information</h4>
+                        <div class="info-grid" id="info-grid"></div>
+                    </div>
+                    
+                    <div id="modal-included" class="detail-section">
+                        <h4>What's Included</h4>
+                        <ul class="features-list" id="features-list"></ul>
+                    </div>
+                    
+                    <div id="modal-ideal" class="detail-section">
+                        <h4>Ideal For</h4>
+                        <p id="ideal-text"></p>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <a href="contact.html" id="primary-btn" class="action-btn primary">Book This Service</a>
+                        <a href="contact.html" id="secondary-btn" class="action-btn secondary">Schedule Free Consultation</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-    
 
     <script src="js/main.js"></script>
     <script src="js/quiz.js"></script>
