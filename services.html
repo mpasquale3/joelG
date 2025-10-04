@@ -426,7 +426,7 @@
         <div class="header-content">
             <div class="logo-section" onclick="location.href='index.html'">
                 <div class="logo">
-                    <img src="images/jgLogoV1-01.svg" alt="JG Fit Coach Logo">
+                    <img src="images/jgLogoV1.svg" alt="JG Fit Coach Logo">
                     <span class="logo-fallback">JG</span>
                 </div>
                 <div class="logo-text">Build the best version of you</div>
@@ -481,13 +481,13 @@
         </div>
     </div>
 
-    <!-- Hero Section -->
-    <section class="hero-small">
-        <div class="hero-content">
-            <h1>Our <span class="highlight-green">Services</span></h1>
-            <p>Choose from our comprehensive range of fitness and nutrition services designed to help you achieve your goals</p>
-        </div>
-    </section>
+   <!-- Page Title -->
+<section class="page-header">
+    <div class="container">
+        <h1>Our <span class="highlight-green">Services</span></h1>
+        <p>Choose from our comprehensive range of fitness and nutrition services designed to help you achieve your goals</p>
+    </div>
+</section>
 
     <!-- Filter Buttons -->
     <section class="filter-section">
@@ -638,7 +638,7 @@
     <!-- CTA Section -->
     <section class="cta-section">
         <div class="container" style="max-width: 800px;">
-            <h2 class="section-title">Ready to Get Started?</h2>
+            <h2 class="section-title">Ready to Get <span class="highlight-green">Started?</span></h2>
             <p class="section-subtitle">New clients: We recommend starting with a free consultation to match you with the perfect program. Returning clients: Book your next session directly.</p>
             
             <div class="cta-buttons">
@@ -655,7 +655,7 @@
             <div class="footer-section">
                 <div style="display: flex; align-items: center; margin-bottom: 1rem;">
                     <div class="footer-logo">
-                        <img src="images/jgLogoV1-01.svg" alt="JG Fit Coach Logo">
+                        <img src="images/jgLogoV1.svg" alt="JG Fit Coach Logo">
                         <span class="footer-logo-fallback">JG</span>
                     </div>
                     <div style="color: #9CA3AF; font-style: italic; font-size: 0.9rem;">
@@ -1113,6 +1113,18 @@
                 toggleMobileMenu();
             }
         });
+
+        // Check URL for filter parameter on page load
+document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const filterParam = urlParams.get('filter');
+    
+    if (filterParam && (filterParam === 'lifestyle' || filterParam === 'bodybuilding')) {
+        filterServices(filterParam);
+        // Scroll to services section
+        document.querySelector('.services-grid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+});
     </script>
 </body>
 </html>

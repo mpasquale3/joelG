@@ -14,7 +14,7 @@
         <div class="header-content">
             <div class="logo-section" onclick="location.href='index.html'">
                 <div class="logo">
-                    <img src="images/jgLogoV1-01.svg" alt="JG Fit Coach Logo">
+                    <img src="images/jgLogoV1.svg" alt="JG Fit Coach Logo">
                     <span class="logo-fallback">JG</span>
                 </div>
                 <div class="logo-text">Build the best version of you</div>
@@ -24,42 +24,70 @@
                 <a href="index.html" class="nav-link">Home</a>
                 <a href="services.html" class="nav-link">Services</a>
                 <a href="contact.html" class="nav-link">Contact</a>
-                
             </nav>
-<!--
-            <div class="social-links">
-                <a href="https://www.instagram.com/joelg_fitness/?hl=en" target="_blank" class="social-link instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://www.threads.com/@joelg_fitness" target="_blank" class="social-link threads">
-                    @
-                </a>
-                <a href="mailto:joel@jgfitcoach.com" class="social-link email">
-                    <i class="fas fa-envelope"></i>
-                </a>
-            </div>-->
+
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero-small">
-        <div class="hero-content">
-            <h1>Frequently Asked <span class="highlight-green">Questions</span></h1>
-            <p>Got questions? I've got answers! Find everything you need to know about training, nutrition, pricing, and getting started.</p>
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay hidden" id="mobile-menu-overlay" onclick="toggleMobileMenu()">
+        <div class="mobile-menu" onclick="event.stopPropagation()">
+            <div class="mobile-menu-header">
+                <div class="mobile-menu-logo">
+                    <img src="images/jgLogoV1.svg" alt="JG Fit Coach Logo">
+                    <span class="mobile-logo-fallback">JG</span>
+                </div>
+                <button class="mobile-menu-close" onclick="toggleMobileMenu()">✕</button>
+            </div>
+            
+            <nav class="mobile-nav">
+                <a href="index.html" class="mobile-nav-link">Home</a>
+                <a href="services.html" class="mobile-nav-link">Services</a>
+                <a href="contact.html" class="mobile-nav-link">Contact</a>
+            </nav>
+            
+            <div class="mobile-menu-footer">
+                <div class="mobile-social-links">
+                    <a href="https://www.instagram.com/joelg_fitness/?hl=en" target="_blank" class="social-link instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.threads.com/@joelg_fitness" target="_blank" class="social-link threads">
+                        @
+                    </a>
+                    <a href="mailto:joel@jgfitcoach.com" class="social-link email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+                <p class="mobile-tagline">Build the best version of you</p>
+            </div>
         </div>
+    </div>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1>Frequently Asked <span class="highlight-green">Questions</span></h1>
+        <p>Got questions? I've got answers! Find everything you need to know about training, nutrition, pricing, and getting started.</p>
     </section>
 
     <!-- Search and Filter Section -->
-    <section class="section" style="padding: 2rem 1rem; background: white; border-bottom: 1px solid #E5E7EB;">
+    <section class="section" style="padding: 2rem 1rem; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
         <div class="container" style="max-width: 800px;">
             <!-- Search Bar -->
-            <div class="search-container">
-                <div class="search-icon"><i class="fas fa-search"></i></div>
-                <input type="text" id="faq-search" placeholder="Search questions..." oninput="searchFAQs()">
+            <div class="search-container" style="margin-bottom: 1.5rem;">
+                <div style="position: relative;">
+                    <div class="search-icon" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--gray-medium);"><i class="fas fa-search"></i></div>
+                    <input type="text" id="faq-search" placeholder="Search questions..." oninput="searchFAQs()" style="width: 100%; padding: 0.75rem 1rem 0.75rem 3rem; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 0.5rem; background: rgba(255, 255, 255, 0.1); color: white; font-size: 1rem;">
+                </div>
             </div>
 
             <!-- Category Filter -->
-            <div class="faq-filters">
+            <div class="faq-filters" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 0.5rem;">
                 <button class="filter-btn active" data-category="all">All Questions</button>
                 <button class="filter-btn" data-category="general">General</button>
                 <button class="filter-btn" data-category="training">Training</button>
@@ -71,7 +99,7 @@
     </section>
 
     <!-- FAQ Section -->
-    <section class="section">
+    <section class="section" style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1);">
         <div class="container" style="max-width: 800px;">
             <div id="faq-items">
                 <!-- GENERAL -->
@@ -291,41 +319,41 @@
             </div>
 
             <!-- No Results Message -->
-            <div id="no-results" class="no-results hidden">
-                <div class="no-results-icon"><i class="fas fa-question-circle"></i></div>
-                <h3>No questions found</h3>
-                <p>Try adjusting your search or category filter.</p>
+            <div id="no-results" class="no-results hidden" style="text-align: center; padding: 3rem 1rem;">
+                <div class="no-results-icon" style="font-size: 3rem; color: var(--gray-medium); margin-bottom: 1rem;"><i class="fas fa-question-circle"></i></div>
+                <h3 style="color: #E5E7EB; margin-bottom: 0.5rem;">No questions found</h3>
+                <p style="color: var(--gray-medium);">Try adjusting your search or category filter.</p>
             </div>
 
             <!-- Results Count -->
-            <div id="results-count" class="results-count">
+            <div id="results-count" class="results-count" style="text-align: center; margin-top: 2rem; color: var(--gray-medium); font-size: 0.9rem;">
                 Showing <span id="visible-count">21</span> of <span id="total-count">21</span> questions
             </div>
         </div>
     </section>
 
- <!-- Still Have Questions CTA -->
-<section class="section cta-section">
-    <div class="container" style="max-width: 800px;">
-        <h2 class="section-title">Still Have Questions?</h2>
-        <p class="section-subtitle">I'm here to help! Choose how you'd like to connect with me.</p>
-        
-        <div class="cta-cards">
-            <a href="https://calendly.com/jgfitcoach" target="_blank" class="cta-button green">
-                <i class="fas fa-calendar-alt"></i> Book Free Consultation
-            </a>
-            <a href="contact.html" class="cta-button orange">
-                <i class="fas fa-clipboard-list"></i> Share Goals & Schedule
-            </a>
+    <!-- Still Have Questions CTA -->
+    <section class="section cta-section">
+        <div class="container" style="max-width: 800px;">
+            <h2 class="section-title">Still Have Questions?</h2>
+            <p class="section-subtitle">I'm here to help! Choose how you'd like to connect with me.</p>
+            
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-bottom: 1.5rem;">
+                <a href="https://calendly.com/jgfitcoach" target="_blank" class="cta-button green" style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                    <i class="fas fa-calendar-alt"></i> Book Free Consultation
+                </a>
+                <a href="contact.html" class="cta-button orange" style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                    <i class="fas fa-clipboard-list"></i> Share Goals & Schedule
+                </a>
+            </div>
+            
+            <div style="text-align: center;">
+                <a href="mailto:joel@jgfitcoach.com" class="cta-button green-outline" style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                    <i class="fas fa-envelope"></i> Email Directly
+                </a>
+            </div>
         </div>
-        
-        <div style="text-align: center; margin-top: 1.5rem;">
-            <a href="mailto:joel@jgfitcoach.com" class="cta-button green-outline">
-                <i class="fas fa-envelope"></i> Email Directly
-            </a>
-        </div>
-    </div>
-</section>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
@@ -334,7 +362,7 @@
             <div class="footer-section">
                 <div style="display: flex; align-items: center; margin-bottom: 1rem;">
                     <div class="footer-logo">
-                        <img src="images/jgLogoV1-01.svg" alt="JG Fit Coach Logo">
+                        <img src="images/jgLogoV1.svg" alt="JG Fit Coach Logo">
                         <span class="footer-logo-fallback">JG</span>
                     </div>
                     <div style="color: #9CA3AF; font-style: italic; font-size: 0.9rem;">
@@ -379,10 +407,6 @@
                     </a>
                 </div>
             </div>
-        </div>
-        
-        <div class="footer-bottom">
-            <p>© 2025 JG Fit Coach. All rights reserved.</p>
         </div>
     </footer>
 
@@ -481,5 +505,93 @@
             document.getElementById('visible-count').textContent = totalItems;
         });
     </script>
+
+    <style>
+        /* FAQ specific styles */
+        .faq-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.75rem;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(95, 239, 167, 0.3);
+        }
+
+        .faq-item.open {
+            border-color: var(--green);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .faq-question h3 {
+            color: #E5E7EB;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .faq-toggle {
+            font-size: 1.5rem;
+            color: var(--green);
+            font-weight: bold;
+            flex-shrink: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(95, 239, 167, 0.1);
+            border-radius: 50%;
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 0 1.5rem 1.5rem;
+        }
+
+        .faq-answer p {
+            color: #D1D5DB;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        input#faq-search::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .faq-question {
+                padding: 1rem;
+            }
+
+            .faq-question h3 {
+                font-size: 1rem;
+            }
+
+            .faq-answer {
+                padding: 0 1rem 1rem;
+            }
+
+            .faq-filters {
+                flex-direction: column;
+            }
+
+            .filter-btn {
+                width: 100%;
+            }
+        }
+    </style>
 </body>
 </html>
