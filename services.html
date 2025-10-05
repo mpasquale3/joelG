@@ -426,7 +426,7 @@
         <div class="header-content">
             <div class="logo-section" onclick="location.href='index.html'">
                 <div class="logo">
-                    <img src="images/jgLogoV1.svg" alt="JG Fit Coach Logo">
+                    <img src="images/jgLogoV5.svg" alt="JG Fit Coach Logo">
                     <span class="logo-fallback">JG</span>
                 </div>
                 <div class="logo-text">Build the best version of you</div>
@@ -452,7 +452,7 @@
         <div class="mobile-menu">
             <div class="mobile-menu-header">
                 <div class="mobile-menu-logo">
-                    <img src="images/jgLogoV1-01.svg" alt="JG Fit Coach Logo">
+                    <img src="images/jgLogoV5.svg" alt="JG Fit Coach Logo">
                     <span class="mobile-logo-fallback">JG</span>
                 </div>
                 <button class="mobile-menu-close" onclick="toggleMobileMenu()" aria-label="Close navigation menu">
@@ -472,7 +472,7 @@
                     <a href="https://www.threads.com/@joelg_fitness" target="_blank" class="social-link threads">
                         @
                     </a>
-                    <a href="mailto:joel@jgfitcoach.com" class="social-link email">
+                    <a href="mailto:joelg831@gmail.com" class="social-link email">
                         <i class="fas fa-envelope"></i>
                     </a>
                 </div>
@@ -655,7 +655,7 @@
             <div class="footer-section">
                 <div style="display: flex; align-items: center; margin-bottom: 1rem;">
                     <div class="footer-logo">
-                        <img src="images/jgLogoV1.svg" alt="JG Fit Coach Logo">
+                        <img src="images/jgLogoV5.svg" alt="JG Fit Coach Logo">
                         <span class="footer-logo-fallback">JG</span>
                     </div>
                     <div style="color: #9CA3AF; font-style: italic; font-size: 0.9rem;">
@@ -695,7 +695,7 @@
                     <a href="https://www.threads.com/@joelg_fitness" target="_blank" class="social-link threads">
                         @
                     </a>
-                    <a href="mailto:joel@jgfitcoach.com" class="social-link email">
+                    <a href="mailto:joelg831@gmail.com" class="social-link email">
                         <i class="fas fa-envelope"></i>
                     </a>
                 </div>
@@ -940,7 +940,7 @@
                 info: [
                     { label: 'Duration', value: 'Weekly Menu Updates, Order by Friday - Delivered Monday' },
                     { label: 'Format', value: 'Denver Metro Area Only' },
-                    { label: 'Pricing', value: '1.25x grocery cost + $0.67/mile' }
+                    { label: 'Pricing', value: '2.25x grocery cost + $0.67/mile' }
                 ],
                 features: [
                     'Fully customized meals based on your goals (cutting, bulking, maintenance)',
@@ -1035,40 +1035,52 @@
         });
 
         function openServiceModal(serviceId) {
-            const service = serviceData[serviceId];
-            if (!service) return;
+    const service = serviceData[serviceId];
+    if (!service) return;
 
-            document.getElementById('modal-title').textContent = service.title;
-            document.getElementById('modal-price').textContent = service.price;
-            document.getElementById('modal-description').textContent = service.description;
+    document.getElementById('modal-title').textContent = service.title;
+    document.getElementById('modal-price').textContent = service.price;
+    document.getElementById('modal-description').textContent = service.description;
 
-            const priceEl = document.getElementById('modal-price');
-            const primaryBtn = document.getElementById('primary-btn');
-            const secondaryBtn = document.getElementById('secondary-btn');
-            
-            priceEl.className = `modal-service-price ${service.category}`;
-            primaryBtn.className = `action-btn primary ${service.category}`;
-            secondaryBtn.className = `action-btn secondary ${service.category}`;
+    const priceEl = document.getElementById('modal-price');
+    const primaryBtn = document.getElementById('primary-btn');
+    const secondaryBtn = document.getElementById('secondary-btn');
+    
+    priceEl.className = `modal-service-price ${service.category}`;
+    primaryBtn.className = `action-btn primary ${service.category}`;
+    secondaryBtn.className = `action-btn secondary ${service.category}`;
 
-            const infoGrid = document.getElementById('info-grid');
-            infoGrid.innerHTML = service.info.map(item => `
-                <div class="info-item">
-                    <strong>${item.label}:</strong>
-                    ${item.value}
-                </div>
-            `).join('');
+    // Set dynamic Calendly links based on service category
+    if (service.category === 'lifestyle') {
+        primaryBtn.href = 'https://calendly.com/jgfitcoach/new-consult-lifestyle';
+        secondaryBtn.href = 'https://calendly.com/jgfitcoach/lifestyle-session';
+    } else if (service.category === 'bodybuilding') {
+        primaryBtn.href = 'https://calendly.com/jgfitcoach/new-consult-bodybuilding';
+        secondaryBtn.href = 'https://calendly.com/jgfitcoach/bodybuilding-session';
+    }
 
-            const featuresList = document.getElementById('features-list');
-            featuresList.innerHTML = service.features.map(feature => `
-                <li>${feature}</li>
-            `).join('');
+    // Update button text for clarity
+    primaryBtn.textContent = 'Schedule Free Consultation';
+    secondaryBtn.textContent = 'Returning Client - Book Session';
 
-            document.getElementById('ideal-text').textContent = service.ideal;
+    const infoGrid = document.getElementById('info-grid');
+    infoGrid.innerHTML = service.info.map(item => `
+        <div class="info-item">
+            <strong>${item.label}:</strong>
+            ${item.value}
+        </div>
+    `).join('');
 
-            document.getElementById('service-modal').classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-        }
+    const featuresList = document.getElementById('features-list');
+    featuresList.innerHTML = service.features.map(feature => `
+        <li>${feature}</li>
+    `).join('');
 
+    document.getElementById('ideal-text').textContent = service.ideal;
+
+    document.getElementById('service-modal').classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+}
         function closeServiceModal() {
             document.getElementById('service-modal').classList.add('hidden');
             document.body.style.overflow = '';

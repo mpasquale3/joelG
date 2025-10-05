@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 212.32 76.79">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #414042;
+        font-family: Raleway-Heavy, Raleway;
+        font-size: 62px;
+        font-weight: 800;
+        stroke: #6dc497;
+        stroke-width: .25px;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        stroke-miterlimit: 10;
+      }
+
+      .cls-4 {
+        fill: #6dc497;
+      }
+
+      .cls-5 {
+        letter-spacing: 0em;
+      }
+
+      .cls-6 {
+        font-size: 34.18px;
+        letter-spacing: .02em;
+      }
+
+      .cls-7 {
+        font-size: 32px;
+        letter-spacing: .02em;
+      }
+
+      .cls-2 {
+        fill: #e6aa34;
+        font-family: KristenITC-Regular, 'Kristen ITC';
+        stroke: #e6aa34;
+        stroke-width: 1.5px;
+      }
+
+      .cls-8 {
+        letter-spacing: .02em;
+      }
+
+      .cls-9 {
+        letter-spacing: .03em;
+      }
+
+      .cls-3 {
+        fill: #f6f194;
+        font-family: Raleway, Raleway;
+        font-size: 36.88px;
+        stroke: #f6f194;
+        stroke-width: 2px;
+      }
+    </style>
+  </defs>
+  <rect class="cls-4" width="79.07" height="75.48" rx="6.95" ry="6.95"/>
+  <text class="cls-1" transform="translate(1.66 60.5)"><tspan x="0" y="0">JG</tspan></text>
+  <text class="cls-3" transform="translate(81.07 67.53) scale(.98 1)"><tspan class="cls-8" x="0" y="0">C</tspan><tspan class="cls-5" x="26.04" y="0">O</tspan><tspan class="cls-9" x="53.88" y="0">ACH</tspan></text>
+  <text class="cls-2" transform="translate(79.43 38.75) rotate(-.17) scale(.84 .95) skewX(-20.68)"><tspan class="cls-6" x="0" y="0">F</tspan><tspan class="cls-7" x="19.38" y="0">I</tspan><tspan class="cls-6" x="32.62" y="0">T</tspan></text>
+</svg>
