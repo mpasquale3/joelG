@@ -266,6 +266,64 @@
             background: var(--orange);
             color: var(--dark);
         }
+
+        /* Posing Chooser Styles */
+        .posing-option-card {
+            background: linear-gradient(135deg, rgba(230, 170, 54, 0.1) 0%, rgba(230, 170, 54, 0.05) 100%);
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .posing-option-card:hover {
+            border-color: var(--orange);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(230, 170, 54, 0.2);
+        }
+
+        .posing-icon-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .posing-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--orange);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--dark);
+        }
+
+        .posing-option-title {
+            font-family: 'Roboto Condensed', sans-serif;
+            font-size: 1.4rem;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .posing-option-price {
+            color: var(--orange);
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .posing-option-description {
+            color: var(--gray-medium);
+            font-size: 0.95rem;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -274,7 +332,7 @@
         <div class="header-content">
             <div class="logo-section" onclick="location.href='index.html'">
                 <div class="logo">
-                    <img src="images/jgLogoV5.svg" alt="JG Fit Coach Logo">
+                    <img src="images/jgLogoV6.svg" alt="JG Fit Coach Logo">
                     <span class="logo-fallback">JG</span>
                 </div>
             </div>
@@ -298,7 +356,7 @@
         <div class="mobile-menu">
             <div class="mobile-menu-header">
                 <div class="mobile-menu-logo">
-                    <img src="images/jgLogoV5.svg" alt="JG Fit Coach Logo">
+                    <img src="images/jgLogoV6.svg" alt="JG Fit Coach Logo">
                     <span class="mobile-logo-fallback">JG</span>
                 </div>
                 <button class="mobile-menu-close" onclick="toggleMobileMenu()" aria-label="Close navigation menu">
@@ -429,7 +487,7 @@
                     </ul>
                 </div>
                 <div class="about-image">
-                    <img src="images/aboutJG.jpg" alt="Joel Gustin - Personal Trainer" onerror="this.parentElement.innerHTML='<div class=placeholder>Joel\'s Professional Photo</div>'">
+                    <img src="images/jgAbout.JPEG" alt="Joel Gustin - Personal Trainer" onerror="this.parentElement.innerHTML='<div class=placeholder>Joel\'s Professional Photo</div>'">
                 </div>
             </div>
         </div>
@@ -697,7 +755,7 @@
                     </div>
                 </div>
 
-                <div class="gallery-item" onclick="openServiceModal('in-person-posing')">
+                <div class="gallery-item" onclick="openPosingChooser()">
                     <img src="images/gallerySupport.jpg" alt="Posing Coaching" onerror="this.parentElement.innerHTML='<div class=gallery-placeholder>Backstage Support</div>'">
                     <div class="gallery-overlay">
                         <div class="gallery-caption">Posing Coaching</div>
@@ -744,7 +802,7 @@
             <div class="footer-section">
                 <div style="display: flex; align-items: center; margin-bottom: 1rem;">
                     <div class="footer-logo">
-                        <img src="images/jgLogoV5.svg" alt="JG Fit Coach Logo">
+                        <img src="images/jgLogoV6.svg" alt="JG Fit Coach Logo">
                         <span class="footer-logo-fallback">JG</span>
                     </div>
                     <div style="color: #9CA3AF; font-style: italic; font-size: 0.9rem;">
@@ -864,6 +922,48 @@
         </div>
     </div>
 
+    <!-- Posing Chooser Modal -->
+    <div id="posing-chooser-modal" class="modal-overlay hidden">
+        <div class="modal" style="max-width: 600px;">
+            <button class="modal-close" onclick="closePosingChooser()">✕</button>
+            
+            <div style="padding: 2rem; text-align: center;">
+                <h2 style="font-family: 'Oswald', sans-serif; font-size: 2rem; margin-bottom: 1rem; color: var(--dark);">
+                    Choose Your <span style="color: var(--orange);">Posing Service</span>
+                </h2>
+                <p style="color: var(--gray-medium); margin-bottom: 2rem; line-height: 1.6;">
+                    Select the format that works best for you
+                </p>
+                
+                <div style="display: grid; gap: 1.5rem; margin-bottom: 2rem;">
+                    <!-- Virtual Posing Option -->
+                    <div class="posing-option-card" onclick="selectPosingService('virtual-posing')">
+                        <div class="posing-icon-wrapper">
+                            <div class="posing-icon">
+                                <i class="fa-solid fa-video"></i>
+                            </div>
+                        </div>
+                        <h3 class="posing-option-title">Online Posing Coaching</h3>
+                        <p class="posing-option-price">$45/session</p>
+                        <p class="posing-option-description">50-minute virtual sessions with real-time feedback</p>
+                    </div>
+                    
+                    <!-- In-Person Posing Option -->
+                    <div class="posing-option-card" onclick="selectPosingService('in-person-posing')">
+                        <div class="posing-icon-wrapper">
+                            <div class="posing-icon">
+                                <i class="fa-solid fa-camera-retro"></i>
+                            </div>
+                        </div>
+                        <h3 class="posing-option-title">In-Person Posing Coaching</h3>
+                        <p class="posing-option-price">$50/session</p>
+                        <p class="posing-option-description">1-hour in-person sessions (Denver Metro Area)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="js/main.js"></script>
     <script src="js/quiz.js"></script>
     <script>
@@ -896,6 +996,7 @@
                     toggleMobileMenu();
                 }
                 closeServiceModal();
+                closePosingChooser();
             }
         });
 
@@ -980,6 +1081,23 @@
                 ],
                 ideal: 'Any individual pursuing physique enhancement or competition prep, committed to structured training, disciplined nutrition, and continuous improvement. Perfect for both beginners and experienced athletes.'
             },
+            'virtual-posing': {
+                title: 'Online Bodybuilding Posing',
+                price: '$45/session',
+                description: 'Physique and Bodybuilding Posing including mandatory poses + routine design to perfect your stage presentation.',
+                category: 'bodybuilding',
+                info: [
+                    { label: 'Duration', value: '50 min sessions' },
+                    { label: 'Format', value: 'Virtual only' }
+                ],
+                features: [
+                    'Mandatory Pose Breakdown with detailed instruction',
+                    'Smooth, confident transitions between poses',
+                    'Routine Design & Choreography personalized to your physique',
+                    'Real-time video conferencing for detailed feedback'
+                ],
+                ideal: 'Competitive bodybuilder or classic physique athlete seeking to refine mandatory poses, transitions, and stage presence. Perfect for both novice and seasoned competitors wanting expert feedback.'
+            },
             'in-person-posing': {
                 title: 'In-Person Bodybuilding Posing',
                 price: '$50/session',
@@ -1001,58 +1119,58 @@
             }
         };
 
-      // Service modal functionality
-function openServiceModal(serviceId) {
-    const service = serviceData[serviceId];
-    if (!service) return;
+        // Service modal functionality
+        function openServiceModal(serviceId) {
+            const service = serviceData[serviceId];
+            if (!service) return;
 
-    document.getElementById('modal-title').textContent = service.title;
-    document.getElementById('modal-price').textContent = service.price;
-    document.getElementById('modal-description').textContent = service.description;
+            document.getElementById('modal-title').textContent = service.title;
+            document.getElementById('modal-price').textContent = service.price;
+            document.getElementById('modal-description').textContent = service.description;
 
-    const priceEl = document.getElementById('modal-price');
-    const primaryBtn = document.getElementById('primary-btn');
-    const secondaryBtn = document.getElementById('secondary-btn');
-    
-    priceEl.className = `modal-service-price ${service.category}`;
-    primaryBtn.className = `action-btn primary ${service.category}`;
-    secondaryBtn.className = `action-btn secondary ${service.category}`;
+            const priceEl = document.getElementById('modal-price');
+            const primaryBtn = document.getElementById('primary-btn');
+            const secondaryBtn = document.getElementById('secondary-btn');
+            
+            priceEl.className = `modal-service-price ${service.category}`;
+            primaryBtn.className = `action-btn primary ${service.category}`;
+            secondaryBtn.className = `action-btn secondary ${service.category}`;
 
-    // Set dynamic Calendly links based on service category
-    if (service.category === 'lifestyle') {
-        primaryBtn.href = 'https://calendly.com/jgfitcoach/new-consult-lifestyle';
-        secondaryBtn.href = 'https://calendly.com/jgfitcoach/lifestyle-session';
-    } else if (service.category === 'bodybuilding') {
-        primaryBtn.href = 'https://calendly.com/jgfitcoach/new-consult-bodybuilding';
-        secondaryBtn.href = 'https://calendly.com/jgfitcoach/bodybuilding-session';
-    }
+            // Set dynamic Calendly links based on service category
+            if (service.category === 'lifestyle') {
+                primaryBtn.href = 'https://calendly.com/jgfitcoach/new-consult-lifestyle';
+                secondaryBtn.href = 'https://calendly.com/jgfitcoach/lifestyle-session';
+            } else if (service.category === 'bodybuilding') {
+                primaryBtn.href = 'https://calendly.com/jgfitcoach/new-consult-bodybuilding';
+                secondaryBtn.href = 'https://calendly.com/jgfitcoach/bodybuilding-session';
+            }
 
-    // Update button text for clarity
-    primaryBtn.textContent = 'Schedule Free Consultation';
-    secondaryBtn.textContent = 'Returning Client - Book Session';
+            // Update button text for clarity
+            primaryBtn.textContent = 'Schedule Free Consultation';
+            secondaryBtn.textContent = 'Returning Client - Book Session';
 
-    // Add target="_blank" to open in new tab
-    primaryBtn.target = '_blank';
-    secondaryBtn.target = '_blank';
+            // Add target="_blank" to open in new tab
+            primaryBtn.target = '_blank';
+            secondaryBtn.target = '_blank';
 
-    const infoGrid = document.getElementById('info-grid');
-    infoGrid.innerHTML = service.info.map(item => `
-        <div class="info-item">
-            <strong>${item.label}:</strong>
-            ${item.value}
-        </div>
-    `).join('');
+            const infoGrid = document.getElementById('info-grid');
+            infoGrid.innerHTML = service.info.map(item => `
+                <div class="info-item">
+                    <strong>${item.label}:</strong>
+                    ${item.value}
+                </div>
+            `).join('');
 
-    const featuresList = document.getElementById('features-list');
-    featuresList.innerHTML = service.features.map(feature => `
-        <li>${feature}</li>
-    `).join('');
+            const featuresList = document.getElementById('features-list');
+            featuresList.innerHTML = service.features.map(feature => `
+                <li>${feature}</li>
+            `).join('');
 
-    document.getElementById('ideal-text').textContent = service.ideal;
+            document.getElementById('ideal-text').textContent = service.ideal;
 
-    document.getElementById('service-modal').classList.remove('hidden');
-    document.body.style.overflow = 'hidden';
-}
+            document.getElementById('service-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
 
         function closeServiceModal() {
             document.getElementById('service-modal').classList.add('hidden');
@@ -1065,7 +1183,29 @@ function openServiceModal(serviceId) {
             }
         });
 
-        
+        // Posing chooser functions
+        function openPosingChooser() {
+            document.getElementById('posing-chooser-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePosingChooser() {
+            document.getElementById('posing-chooser-modal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        function selectPosingService(serviceId) {
+            closePosingChooser();
+            setTimeout(() => {
+                openServiceModal(serviceId);
+            }, 300);
+        }
+
+        document.getElementById('posing-chooser-modal').addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal-overlay')) {
+                closePosingChooser();
+            }
+        });
     </script>
 </body>
 </html>

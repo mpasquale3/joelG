@@ -82,7 +82,7 @@ h6 .highlight-green {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 80px;
+    height: 125px;
 }
 
 /* Header logo section */
@@ -93,8 +93,8 @@ h6 .highlight-green {
 }
 
 .logo {
-    width: 80px;
-    height: 75px;
+    width: 120px;
+    height: 115px;
     background: none;
     border-radius: 50%;
     display: flex;
@@ -106,6 +106,8 @@ h6 .highlight-green {
     transition: all 0.3s;
     cursor: pointer;
     padding: 10px;
+    margin-top: 10px;    
+    margin-bottom: 10px;
     
 }
 
@@ -128,7 +130,7 @@ h6 .highlight-green {
     height: 100%;
     object-fit: contain;
     object-position: center center;
-    transform: scale(0.9);
+    transform: scale(1);
 }
 
 /* Fallback text (shows if image fails to load) */
@@ -407,8 +409,8 @@ h6 .highlight-green {
     }
     
     .logo {
-        width: 100px;
-        height: 100px;
+        width: 120px;
+        height: 120px;
     }
     
     .logo-text {
@@ -1039,19 +1041,49 @@ h6 .highlight-green {
 }
 
 .about-image {
-    height: 400px;
+    width: 100%;
     background: #EBEBEC;
     border-radius: 1rem;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
+    min-height: 400px;
 }
 
 .about-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain; /* Changed from 'cover' to 'contain' to show full image */
+    object-position: center;
+}
+
+/* Responsive adjustments for about section */
+@media (min-width: 768px) {
+    .about-image {
+        min-height: 500px;
+        max-height: 600px;
+    }
+}
+
+@media (max-width: 767px) {
+    .about-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .about-image {
+        min-height: 400px;
+        max-height: 500px;
+        order: -1; /* Put image above text on mobile */
+    }
+}
+
+/* For very large screens */
+@media (min-width: 1200px) {
+    .about-image {
+        min-height: 550px;
+        max-height: 650px;
+    }
 }
 
 .placeholder {
